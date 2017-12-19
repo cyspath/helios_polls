@@ -1,3 +1,6 @@
-<span (click)="vote()">
+<div 
+	class="polls__card"
+	[ngClass]="{ 'selected': selected===true, 'disabled': clickable===false }"
+	(click)="vote()">
 	{{ value }}
-</span>
+</div>
