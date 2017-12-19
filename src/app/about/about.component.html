@@ -1,3 +1,16 @@
 <p>
-  about works!
+  This is about page.
 </p>
+
+<p>
+  <button
+    type="button"
+    (click)="takeMeHome()">
+    <strong>< HOME</strong>
+</button>
+</p>
+
+
+<ul >
+  <li *ngFor="let comment of comments">{{ comment }}</li>
+</ul>

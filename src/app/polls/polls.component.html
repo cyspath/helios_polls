@@ -1,0 +1,12 @@
+<polls-card
+  *ngFor="let cardValue of cardValues"
+  [value]="cardValue">
+</polls-card>
+
+<p>{{ estimateMessage }}</p>
+
+<button 
+  type="button"
+  (click)="reset()">
+  Reset
+</button>
