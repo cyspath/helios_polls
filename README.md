@@ -3,9 +3,15 @@ $ ng serve
 browser on http://localhost:4200
 npm install @angular/animations@latest --save
 
+npm install express body-parser --save
+
 to generate component
 $ ng generate component home
 
+to run mongo shell $ mongo --shell
+to run mongo db $ mongod
+
+ng build
 
 # Ng5
 
