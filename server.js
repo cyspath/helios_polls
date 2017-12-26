@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const http = require('http');
 const app = express();
+const http = require('http').Server(app);
+let io = require('socket.io')(http);
 
 // Parsers
 app.use(bodyParser.json());
@@ -11,27 +12,30 @@ app.use(bodyParser.urlencoded({ extended: false}));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// Socket io
+let users = {}
+io.on('connection', (socket) => {
+	users[socket.id] = { id: socket.id };
+	io.emit('message', { type: 'updateUsers', users })
+	console.log('user connected: ', socket.id);
 
-//Set Port
-const port = process.env.PORT || '3000';
-app.set('port', port);
+	socket.on('disconnect', function(){
+		delete users[socket.id];
+		io.emit('message', { type: 'updateUsers', users })		
+		console.log('user disconnected: ', socket.id);
+	});
 
-const server = http.createServer(app);
+	socket.on('message', (data) => {
+		console.log("Message Received: " + data);
 
-server.listen(port, () => console.log(`Running on localhost:${port}`));
-
-
-// API file for interacting with MongoDB
-// const api = require('./server/routes/api');
-
-// API location
-// app.use('/api', api);
-
-
-app.get('/api/votes', function(req, res) {
-    res.send('this is a sample!');  
+		io.emit('message', { type:'addComment', comment: data });    
+	});
 });
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
+
+http.listen(3000, () => {
+    console.log('started on port 3000');
 });

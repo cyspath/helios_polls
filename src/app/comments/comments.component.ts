@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from "@angular/animations";
 import { StateService } from "../services/state.service";
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-comments',
@@ -34,17 +35,22 @@ export class CommentsComponent implements OnInit {
   commentText: string = '';
   comments = [];
 
-  constructor(private _state: StateService) { }
+  constructor(private _state: StateService, private _chat: ChatService) { }
 
   ngOnInit() {
     this._state.commentObs.subscribe(res => this.comments = res);
     this.emitChange();
+
+    this._chat.messages.subscribe(msg => {
+      console.log(msg);
+    })
   }
 
   addItem() {
     this.comments.push(this.commentText);
+    this._chat.sendMsg(this.commentText);
     this.commentText = '';
-    this.emitChange();    
+    this.emitChange();
   }
 
   removeItem(i) {

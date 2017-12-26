@@ -1,13 +1,25 @@
-<polls-card
-  *ngFor="let cardValue of cardValues"
-  [value]="cardValue">
-</polls-card>
+<div class="card-container">
+    <h3>Choose your estimate...</h3>
+    <br>
+    <polls-card
+      *ngFor="let cardValue of cardValues"
+      [value]="cardValue">
+    </polls-card>
+</div>
 
-<p>{{ estimateMessage }}</p>
+<div class="card-container">
+    <p>{{ estimateMessage }}</p>
+    <br>    
+    <div *ngFor="let userId of users" class="polls__card empty-card">
+        {{ userId }}
+      </div>
+</div>
 
-<button 
-  class="btn btn-primary btn-sm"
-  type="button"
-  (click)="reset()">
-  Reset
-</button>
+<div class="card-container">
+    <button 
+    class="btn btn-primary btn-sm"
+    type="button"
+    (click)="reset()">
+    Reset
+  </button>  
+</div>    

@@ -13,6 +13,8 @@ import { PollsComponent } from './polls/polls.component';
 import { CardComponent } from './polls/card.component';
 
 import { StateService } from "./services/state.service";
+import { ChatService } from "./services/chat.service";
+import { WebsocketService } from "./services/websocket.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { StateService } from "./services/state.service";
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [StateService],
+  providers: [StateService, ChatService, WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
