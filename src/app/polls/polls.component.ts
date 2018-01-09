@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CardComponent } from "./card.component";
 import { StateService } from "../services/state.service";
-import { ChatService } from '../services/chat.service';
+import { CommentService } from '../services/comment.service';
+import { VoteService } from "../services/vote.service";
 
 const CARD_VALUES = ['1', '2', '3', '5', '8', '13', '21', '?'];
 
@@ -17,7 +18,7 @@ export class PollsComponent implements OnInit {
   estimateMessage: string;
   users: any;
   
-  constructor(private _state: StateService, private _chat: ChatService) { }
+  constructor(private _state: StateService, private _commentService: CommentService, private _voteService: VoteService) { }
 
   ngOnInit() {
     this._state.voteObs.subscribe(res => {
@@ -25,11 +26,21 @@ export class PollsComponent implements OnInit {
       this.updateEstimateMessage();
     });    
 
-    this._chat.messages.subscribe(msg => {
-      if (msg.type === 'updateUsers') {
-        this.users = Object.keys(msg.users);
+    // this._commentService.messages.subscribe(msg => {
+    //   if (msg.type === 'updateUsers') {
+    //     this.users = Object.keys(msg.users);
+    //   }
+    // })
+
+    this._voteService.messages.subscribe(msg => {
+
+      if (msg.action === 'UPDATE_USERS') {
+        console.log(msg.users);
+        
+        this.users = Object.keys(msg.users);        
       }
-    })
+      
+    });
   }
 
   reset() {
@@ -37,7 +48,7 @@ export class PollsComponent implements OnInit {
   }
 
   updateEstimateMessage() {
-    this.estimateMessage =  this.vote ? `Your current estimate: ${this.vote}` : "You haven't estimated yet";    
+    this.estimateMessage =  this.vote ? `Your current estimate: ${this.vote}` : "You haven't estimated yet";  
   }
 
 }

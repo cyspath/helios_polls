@@ -5,23 +5,29 @@ import { WebsocketService } from './websocket.service';
 import { Observable, Subject } from 'rxjs/Rx';
 
 @Injectable()
-export class ChatService {
+export class VoteService {
   
   messages: Subject<any>;
+  type: string = 'VOTE';
   
   // Our constructor calls our wsService connect method
   constructor(private wsService: WebsocketService) {
     this.messages = <Subject<any>>wsService
       .connect()
-      .map((response: any): any => {
-        return response;
+      .filter((response: any): any => {
+        return response.type === this.type;
       })
    }
   
   // Our simplified interface for sending
   // messages back to our socket.io server
-  sendMsg(msg) {
-    this.messages.next(msg);
+  send(data) {
+	this.addType(data);
+    this.messages.next(data);
+  }
+
+  addType(data) {
+	data.type = this.type;	
   }
 
 }
