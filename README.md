@@ -13,6 +13,8 @@ to run mongo db $ mongod
 
 ng build
 
+TO DO: add icons for picking for each user, save to local storage
+
 # Ng5
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.7.

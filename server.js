@@ -28,13 +28,17 @@ let comments = [];
 io.on('connection', (socket) => {
 	console.log('....');
 	
-	users[socket.id] = { id: socket.id };
-	io.emit('message', { type: 'VOTE', action: 'UPDATE_USERS', users })
+	if (!users[socket.id]) {
+		users[socket.id] = { id: socket.id, estimate: undefined, estimated: false };
+	}
+	
+	io.to(socket.id).emit('message', { type: 'SOCKET_ID', value: socket.id });
+	io.emit('message', { type: 'UPDATE_USERS', users });
 	console.log('user connected: ', socket.id);
 
 	socket.on('disconnect', function(){
 		delete users[socket.id];
-		io.emit('message', { type: 'VOTE', action: 'UPDATE_USERS', users })
+		io.emit('message', { type: 'UPDATE_USERS', users })
 		console.log('user disconnected: ', socket.id);
 	});
 
@@ -53,8 +57,24 @@ io.on('connection', (socket) => {
 
 			case 'NEW_VOTE':				
 				users[data.id].estimate = data.value;
-				io.emit('message', data);
+				users[data.id].estimated = true;				
+				io.emit('message', { type: 'UPDATE_USERS', users });
 				break;
+
+			case 'RESET_VOTES':
+				for (var id in users) {
+					users[id].estimated = false;
+					users[id].estimate = undefined;
+				}	
+				io.emit('message', { type: 'UPDATE_USERS', users });
+				break;
+
+			case 'CANCEL_VOTE':				
+				users[data.id].estimate = undefined;
+				users[data.id].estimated = false;				
+				io.emit('message', { type: 'UPDATE_USERS', users });
+				break;
+
 			default:
 				console.log('def');
 				

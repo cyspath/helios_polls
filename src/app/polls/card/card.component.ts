@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit , Output} from '@angular/core';
-import { StateService } from "../services/state.service";
-import { VoteService } from "../services/vote.service";
+
+import { StateService } from "../../services/state.service";
+import { ApiService } from "../../services/api.service";
 
 @Component({
   selector: 'polls-card',
@@ -14,16 +15,16 @@ export class CardComponent implements OnInit {
   clickable: boolean;
   selected: boolean = false;
 
-  constructor(private _state: StateService, private _vote: VoteService) {
+  constructor(private _state: StateService, private _api: ApiService) {
   }
 
   ngOnInit() {
-    this._state.voteObs.subscribe(res => {
+    this._state.voteable.subscribe(res => {
       this.clickable = res === undefined ? true : false;
       if (this.clickable) {
         this.selected = false;
       }
-    });
+	});
   }
 
   vote() {
@@ -33,7 +34,7 @@ export class CardComponent implements OnInit {
 
       this._state.updateVoteObs(this.value); // update canVoteObs to emit false
       
-      this._vote.send({ action: 'NEW_VOTE', value: this.value });
+      this._api.send({ type: 'NEW_VOTE', value: this.value });
 
       this.selected = true;
     }

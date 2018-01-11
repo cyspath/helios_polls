@@ -10,11 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { CommentsComponent } from './comments/comments.component';
 import { PollsComponent } from './polls/polls.component';
-import { CardComponent } from './polls/card.component';
+import { CardComponent } from './polls/card/card.component';
+import { VoterComponent } from './polls/voter/voter.component';
 
 import { StateService } from "./services/state.service";
-import { CommentService } from "./services/comment.service";
-import { VoteService } from "./services/vote.service";
+import { ApiService } from "./services/api.service";
 import { WebsocketService } from "./services/websocket.service";
 
 @NgModule({
@@ -24,7 +24,8 @@ import { WebsocketService } from "./services/websocket.service";
     AboutComponent,
     CommentsComponent,
     PollsComponent,
-    CardComponent
+    CardComponent,
+    VoterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { WebsocketService } from "./services/websocket.service";
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [StateService, CommentService, VoteService, WebsocketService],
+  providers: [StateService, ApiService, WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

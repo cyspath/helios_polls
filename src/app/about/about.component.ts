@@ -16,7 +16,7 @@ export class AboutComponent implements OnInit {
    }
 
   ngOnInit() {
-    this._state.commentObs.subscribe(res => this.comments = res);
+    // this._state.commentObs.subscribe(res => this.comments = res);
   }
 
   takeMeHome() {

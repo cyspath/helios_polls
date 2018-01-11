@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from "@angular/animations";
 import { StateService } from "../services/state.service";
-import { CommentService } from '../services/comment.service';
+import { ApiService } from "../services/api.service";
 
 @Component({
   selector: 'app-comments',
@@ -35,22 +35,22 @@ export class CommentsComponent implements OnInit {
   commentText: string = '';
   comments = [];
 
-  constructor(private _state: StateService, private _commentApi: CommentService) { }
+  constructor(private _state: StateService, private _api: ApiService) { }
 
   ngOnInit() {
-    this._state.commentObs.subscribe(res => this.comments = res);
+    this._state.commentable.subscribe(res => this.comments = res);
     this.emitChange();
 
-    this._commentApi.messages.subscribe(msg => {
-      this.comments.push(msg.value);
-      this.commentText = '';
-      this.emitChange();
-    })
+    // this._api.messages.subscribe(msg => {
+    //   this.comments.push(msg.value);
+    //   this.commentText = '';
+    //   this.emitChange();
+    // })
   }
 
   addItem() {
     // this.comments.push(this.commentText);
-    this._commentApi.send({ action: 'NEW_COMMENT', value: this.commentText });
+    this._api.send({ type: 'NEW_COMMENT', value: this.commentText });
     // this.commentText = '';
     // this.emitChange();
   }

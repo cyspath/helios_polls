@@ -17,7 +17,7 @@
     color: #3e352f;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
     background-color: rgb(224, 217, 207);
-    margin: 0 10px;
+	margin: 0 10px;
 }
 
 .polls__card.disabled {
@@ -27,16 +27,4 @@
 
 .polls__card.selected {
     background-color: gold;
-}
-
-.polls__card.empty-card {
-    width: 50px;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0);
-    -webkit-box-shadow: inset 0px 0px 3px rgba(15, 14, 12, 0.7);
-    -moz-box-shadow: inset 0px 0px 3px rgba(15, 14, 12, 0.7);
-    box-shadow: inset 0px 0px 3px rgba(15, 14, 12, 0.7);
-    border: none;
-    border-top: 1px solid transparent;
-    cursor: default;
 }
