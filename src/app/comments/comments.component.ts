@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from "@angular/animations";
 import { StateService } from "../services/state.service";
 import { ApiService } from "../services/api.service";
+import { Action } from "../shared/actions";
 
 @Component({
   selector: 'app-comments',
@@ -50,7 +51,7 @@ export class CommentsComponent implements OnInit {
 
   addItem() {
     // this.comments.push(this.commentText);
-    this._api.send({ type: 'NEW_COMMENT', value: this.commentText });
+    this._api.send({ action: Action.NewComment, value: this.commentText });
     // this.commentText = '';
     // this.emitChange();
   }

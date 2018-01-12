@@ -24,6 +24,7 @@
 .polls__voter.voted {
 	background-color: #E0D9CF;
 	&.is_current_user {
-		background-color: gold;		
+		background-color: gold;
+		cursor: pointer;
 	}
 }

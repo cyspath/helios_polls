@@ -1,23 +1,23 @@
 <div class="card-container">
     <h3>Choose your estimate...</h3>
-    <br>
+	<br>
+	
     <polls-card
       *ngFor="let cardValue of cardValues"
       [value]="cardValue">
-    </polls-card>
+	</polls-card>
+	
 </div>
 
 <div class="card-container">
     <p>{{ estimateMessage }}</p>
     <br>    
-    <!-- <div *ngFor="let user of users" class="polls__card user-card">
-        <p>{{ user.id }}</p>
-        <p>{{ user.estimate }}</p>
-    </div> -->
+
     <polls-voter
       *ngFor="let voter of voters; trackBy: trackByVoter"
       [voter]="voter">
-    </polls-voter>
+	</polls-voter>
+
 </div>
 
 <div class="card-container">

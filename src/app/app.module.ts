@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { AvatarComponent } from './avatar/avatar.component';
 import { CommentsComponent } from './comments/comments.component';
 import { PollsComponent } from './polls/polls.component';
 import { CardComponent } from './polls/card/card.component';
@@ -21,7 +22,8 @@ import { WebsocketService } from "./services/websocket.service";
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent,
+	AboutComponent,
+	AvatarComponent,
     CommentsComponent,
     PollsComponent,
     CardComponent,

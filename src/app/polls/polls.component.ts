@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { StateService } from "../services/state.service";
 import { ApiService } from "../services/api.service";
+import { Action } from "../shared/actions";
 
 const CARD_VALUES = ['1', '2', '3', '5', '8', '13', '21', '?'];
 
@@ -21,15 +22,13 @@ export class PollsComponent implements OnInit {
 	constructor(private _state: StateService, private _api: ApiService) { }
 
 	ngOnInit() {
-		this._state.voteable.subscribe(res => {
-			this.vote = res;
-			this.updateEstimateMessage();
+		this._state.user.subscribe(u => {
+			this.estimateMessage = u.voted && u.vote ? `Your current estimate: ${u.vote}` : "You haven't estimated yet";
 		});
 
 		this._api.messages.subscribe(msg => {
-			if (msg.type === 'UPDATE_USERS') {
-				console.log('UPDATING_VOTERS:', msg.users);
-				this.voters = Object.values(msg.users);        
+			if (msg.action === Action.UpdateUsers) {
+				this.voters = Object.values(msg.value);        
 			}
 		});
 	}
@@ -37,12 +36,6 @@ export class PollsComponent implements OnInit {
 	trackByVoter(index: number, voter: any): string { return voter.id; }
 
 	reset() {
-		this._state.updateVoteObs(undefined);
-		this._api.send({ type: 'RESET_VOTES' });
+		this._api.send({ action: Action.ResetVotes });
 	}
-
-	updateEstimateMessage() {
-		this.estimateMessage =  this.vote ? `Your current estimate: ${this.vote}` : "You haven't estimated yet";  
-	}
-
 }

@@ -5,34 +5,37 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { ApiService } from "./api.service";
+import { Action } from "../shared/actions";
 
 @Injectable()
 export class StateService {
 
-	public socketable = new BehaviorSubject<string>(undefined);
+	public user = new BehaviorSubject<any>({ 
+		id: '',
+		avatar: '★',
+		voted: false, 
+		vote: undefined
+	});
 
 	public commentable = new BehaviorSubject<any>(['Welcome to Helios agile board!']);
 
-	public voteable = new BehaviorSubject<any>(undefined);	
-
 	constructor(private _api: ApiService) {
 		this._api.messages.subscribe(msg => {
-			if (msg.type === 'SOCKET_ID') {
-				console.log('new socket!', msg);
-								
-				this.socketable.next(msg.value);      
+			if (msg.action === Action.CurrentUser) {
+				this.user.next(msg.value);
 			}
 		});
 	}
 
-	updateCommentObs(comments) {
-		console.log(`state updated: comments ${comments.length}`);
-		this.commentable.next(comments);
+	updateUser(options) {
+		this.user.take(1).subscribe((u) => {
+			const user = Object.assign({}, u, options);
+			this.user.next(user);
+		})
 	}
 
-	updateVoteObs(vote) {
-		console.log(`state updated: vote is ${vote}`);
-		this.voteable.next(vote);
+	updateCommentObs(comments) {
+		this.commentable.next(comments);
 	}
 
 }

@@ -29,16 +29,16 @@ io.on('connection', (socket) => {
 	console.log('....');
 	
 	if (!users[socket.id]) {
-		users[socket.id] = { id: socket.id, estimate: undefined, estimated: false };
+		users[socket.id] = { id: socket.id, avatar: '★', vote: undefined, voted: false };
 	}
 	
-	io.to(socket.id).emit('message', { type: 'SOCKET_ID', value: socket.id });
-	io.emit('message', { type: 'UPDATE_USERS', users });
+	io.to(socket.id).emit('message', { action: 'CURRENT_USER', value: users[socket.id] });
+	io.emit('message', { action: 'UPDATE_USERS', value: users });
 	console.log('user connected: ', socket.id);
 
 	socket.on('disconnect', function(){
 		delete users[socket.id];
-		io.emit('message', { type: 'UPDATE_USERS', users })
+		io.emit('message', { action: 'UPDATE_USERS', value: users })
 		console.log('user disconnected: ', socket.id);
 	});
 
@@ -48,7 +48,12 @@ io.on('connection', (socket) => {
 
 		console.log('Server: received message', data);
 	
-		switch(data.type) {
+		switch(data.action) {
+			
+			case 'UPDATE_AVATAR':				
+				users[data.id].avatar = data.value;				
+				io.emit('message', { action: 'UPDATE_USERS', value: users });
+				break;
 
 			case 'NEW_COMMENT':				
 				comments.push({ id: data.id, value: data.value });
@@ -56,23 +61,23 @@ io.on('connection', (socket) => {
 				break;
 
 			case 'NEW_VOTE':				
-				users[data.id].estimate = data.value;
-				users[data.id].estimated = true;				
-				io.emit('message', { type: 'UPDATE_USERS', users });
+				users[data.id].vote = data.value;
+				users[data.id].voted = true;
+				io.emit('message', { action: 'UPDATE_USERS', value: users });
 				break;
 
 			case 'RESET_VOTES':
 				for (var id in users) {
-					users[id].estimated = false;
-					users[id].estimate = undefined;
+					users[id].voted = false;
+					users[id].vote = undefined;
 				}	
-				io.emit('message', { type: 'UPDATE_USERS', users });
+				io.emit('message', { action: 'UPDATE_USERS', value: users });
 				break;
 
 			case 'CANCEL_VOTE':				
-				users[data.id].estimate = undefined;
-				users[data.id].estimated = false;				
-				io.emit('message', { type: 'UPDATE_USERS', users });
+				users[data.id].vote = undefined;
+				users[data.id].voted = false;				
+				io.emit('message', { action: 'UPDATE_USERS', value: users });
 				break;
 
 			default:

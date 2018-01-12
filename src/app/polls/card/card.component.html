@@ -1,6 +1,6 @@
 <div 
 	class="polls__card"
-	[ngClass]="{ 'selected': selected===true, 'disabled': clickable===false }"
+	[ngClass]="{ 'selected': selected===true, 'voted': voted===true }"
 	(click)="vote()">
 	{{ value }}
 </div>
