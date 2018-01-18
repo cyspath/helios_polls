@@ -17,12 +17,31 @@ export class StateService {
 		vote: undefined
 	});
 
+	public voters = new BehaviorSubject<any>([]);
+
 	public commentable = new BehaviorSubject<any>(['Welcome to Helios agile board!']);
 
 	constructor(private _api: ApiService) {
+		let userId: any;
+
 		this._api.messages.subscribe(msg => {
-			if (msg.action === Action.CurrentUser) {
-				this.user.next(msg.value);
+
+			switch(msg.action) {
+
+				case Action.CurrentUser:
+					const user = msg.value;
+					userId = user.id;
+					this.user.next(user);
+					break;
+
+				case Action.UpdateUsers:
+					const users = msg.value; // users hash from server
+					this.user.next(users[userId]);
+					this.voters.next(Object.values(users));			
+					break;
+				
+				default:
+					console.log(`Default action: ${msg}`);
 			}
 		});
 	}
@@ -38,4 +57,7 @@ export class StateService {
 		this.commentable.next(comments);
 	}
 
+	resetVotes() {
+		this._api.send({ action: Action.ResetVotes });		
+	}
 }

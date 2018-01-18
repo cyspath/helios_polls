@@ -25,20 +25,27 @@ http.listen(3000, () => {
 let users = {};
 let comments = [];
 
+const emitUsers = () => {
+	return io.emit('message', { action: 'UPDATE_USERS', value: users });	
+};
+
+const emitCurrentUser = (socket) => {
+	return io.to(socket.id).emit('message', { action: 'CURRENT_USER', value: users[socket.id] });	
+};
+
 io.on('connection', (socket) => {
-	console.log('....');
 	
 	if (!users[socket.id]) {
 		users[socket.id] = { id: socket.id, avatar: '★', vote: undefined, voted: false };
 	}
 	
-	io.to(socket.id).emit('message', { action: 'CURRENT_USER', value: users[socket.id] });
-	io.emit('message', { action: 'UPDATE_USERS', value: users });
+	emitCurrentUser(socket);
+	emitUsers();
 	console.log('user connected: ', socket.id);
 
 	socket.on('disconnect', function(){
 		delete users[socket.id];
-		io.emit('message', { action: 'UPDATE_USERS', value: users })
+		emitUsers();
 		console.log('user disconnected: ', socket.id);
 	});
 
@@ -52,7 +59,7 @@ io.on('connection', (socket) => {
 			
 			case 'UPDATE_AVATAR':				
 				users[data.id].avatar = data.value;				
-				io.emit('message', { action: 'UPDATE_USERS', value: users });
+				emitUsers();
 				break;
 
 			case 'NEW_COMMENT':				
@@ -63,7 +70,7 @@ io.on('connection', (socket) => {
 			case 'NEW_VOTE':				
 				users[data.id].vote = data.value;
 				users[data.id].voted = true;
-				io.emit('message', { action: 'UPDATE_USERS', value: users });
+				emitUsers();
 				break;
 
 			case 'RESET_VOTES':
@@ -71,13 +78,13 @@ io.on('connection', (socket) => {
 					users[id].voted = false;
 					users[id].vote = undefined;
 				}	
-				io.emit('message', { action: 'UPDATE_USERS', value: users });
+				emitUsers();
 				break;
 
 			case 'CANCEL_VOTE':				
 				users[data.id].vote = undefined;
 				users[data.id].voted = false;				
-				io.emit('message', { action: 'UPDATE_USERS', value: users });
+				emitUsers();
 				break;
 
 			default:

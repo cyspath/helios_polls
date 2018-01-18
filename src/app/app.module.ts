@@ -8,22 +8,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { AvatarComponent } from './avatar/avatar.component';
+import { AvatarsComponent } from './avatars/avatars.component';
 import { CommentsComponent } from './comments/comments.component';
 import { PollsComponent } from './polls/polls.component';
 import { CardComponent } from './polls/card/card.component';
 import { VoterComponent } from './polls/voter/voter.component';
 
-import { StateService } from "./services/state.service";
-import { ApiService } from "./services/api.service";
-import { WebsocketService } from "./services/websocket.service";
+import { ApiService, LocalStoreService, StateService, WebsocketService } from "./services";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
 	AboutComponent,
-	AvatarComponent,
+	AvatarsComponent,
     CommentsComponent,
     PollsComponent,
     CardComponent,
@@ -35,7 +33,7 @@ import { WebsocketService } from "./services/websocket.service";
     FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [StateService, ApiService, WebsocketService],
+  providers: [ApiService, StateService, LocalStoreService, WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

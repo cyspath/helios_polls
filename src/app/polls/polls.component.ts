@@ -26,16 +26,14 @@ export class PollsComponent implements OnInit {
 			this.estimateMessage = u.voted && u.vote ? `Your current estimate: ${u.vote}` : "You haven't estimated yet";
 		});
 
-		this._api.messages.subscribe(msg => {
-			if (msg.action === Action.UpdateUsers) {
-				this.voters = Object.values(msg.value);        
-			}
+		this._state.voters.subscribe(voters => {			
+			this.voters = voters;
 		});
 	}
 
 	trackByVoter(index: number, voter: any): string { return voter.id; }
 
 	reset() {
-		this._api.send({ action: Action.ResetVotes });
+		this._state.resetVotes();
 	}
 }

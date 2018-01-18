@@ -19,7 +19,7 @@ export class VoterComponent implements OnInit {
 	constructor(private _state: StateService, private _api: ApiService) {}
 	
 	public ngOnInit() {
-		this._state.user.subscribe(currentUser => {			
+		this._state.user.subscribe(currentUser => {		
 			this.currentUser = currentUser;
 			this.isCurrentUser = this.voter.id === currentUser.id;
 		});
@@ -28,7 +28,6 @@ export class VoterComponent implements OnInit {
 	private cancelVote() {
 		if (this.isCurrentUser && this.currentUser.voted) {
 			this._api.send({ action: Action.CancelVote });
-			this._state.updateUser({ voted: false, vote: undefined });
 		}		
 	}
 }
