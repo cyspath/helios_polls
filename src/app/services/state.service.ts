@@ -15,7 +15,8 @@ export class StateService {
 		id: '',
 		avatar: '★',
 		voted: false, 
-		vote: undefined
+		vote: undefined,
+		reveal: false
 	});
 
 	public voters = new BehaviorSubject<any>([]);

@@ -9,7 +9,7 @@ import { Action } from "../shared/actions";
 	styleUrls: ['./avatars.component.scss']
 })
 export class AvatarsComponent implements OnInit {
-	private values: string[] = ['JH', 'ML', 'KS', 'LR'];
+	public values: string[] = ['JH', 'ML', 'KS', 'LR'];
 
 	constructor(private _state: StateService, private _api: ApiService, private _localStore: LocalStoreService) {}
 
