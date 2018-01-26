@@ -4,6 +4,7 @@ import { StateService } from "../services/state.service";
 import { ApiService } from "../services/api.service";
 import { Action } from "../shared/actions";
 import { IVoter } from "./voter/Voter";
+import { Result } from "./Result.enum";
 
 const CARD_VALUES = ['1', '2', '3', '5', '8', '13', '21', '?'];
 
@@ -16,6 +17,7 @@ export class PollsComponent implements OnInit {
 	public voters: Array<IVoter> = [];
 	public cardValues: Array<string> = CARD_VALUES;
 	public estimateMessage: string;
+	public result: Result;
 	
 	constructor(private _state: StateService, private _api: ApiService) { }
 
@@ -26,6 +28,7 @@ export class PollsComponent implements OnInit {
 
 		this._state.voters.subscribe(voters => {			
 			this.voters = voters;
+			this.updateResult(voters);
 		});
 	}
 
@@ -37,5 +40,22 @@ export class PollsComponent implements OnInit {
 
 	public reveal() {
 		this._state.revealVotes();
+	}
+
+	private updateResult(voters) {
+		this.result = this.sameResult(voters) ? Result.Same : Result.Different;
+	}
+
+	private sameResult(voters) {
+		let vote;
+		for (var i = 0; i < voters.length; i++) {
+			if (vote === undefined) {
+				vote = voters[i].vote;
+			}
+			if (voters[i].vote !== vote) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

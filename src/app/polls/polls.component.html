@@ -15,7 +15,8 @@
 
     <polls-voter
       *ngFor="let voter of voters; trackBy: trackByVoter"
-      [voter]="voter">
+	  [voter]="voter"
+	  [result]="result">
 	</polls-voter>
 
 </div>

@@ -14,7 +14,7 @@
 
 .polls__voter.is_current_user.voted .front,
 .polls__voter.is_current_user.voted .back {
-	background-color: #ffdf39;
+	background-color: gold;
 	cursor: pointer;
 }
 
@@ -26,12 +26,16 @@
 
 .polls__voter.voted .front, 
 .polls__voter.voted .back {
-	background-color: #d8f7b7;
+	background-color: #dbd3c9;
+}
+
+.polls__voter.voted .back.green {
+	background-color: #7ccd7c;
 }
 
 .polls__voter .front,
 .polls__voter .back {
-	background-color: #f2f9ea;
+	background-color: #efeeee;
 }
 
 .front, .back {

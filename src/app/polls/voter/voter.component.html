@@ -8,9 +8,9 @@
 	<div class="flipper">
 		<div class="front">
 			<span *ngIf='voter.voted'>×</span>				
-			<!-- <span *ngIf='voter.voted'>✔</span> -->
 		</div>
-		<div class="back">
+		<div class="back"
+			[ngClass]="{ 'green': result === Result.Same }">
 			{{ voter.avatar }}
 			{{ voter.vote }}
 		</div>
