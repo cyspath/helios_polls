@@ -13,7 +13,7 @@ export class CardComponent implements OnInit {
 	@Input() value: string;
 
 	public voted: boolean = false;
-	selected: boolean = false;
+	public selected: boolean = false;
 
 	constructor(private _state: StateService, private _api: ApiService) {}
 
@@ -27,6 +27,7 @@ export class CardComponent implements OnInit {
 	}
 
 	vote() {
+		this.selected = true;
 		this._api.send({ action: Action.NewVote, value: this.value });
 	}
 

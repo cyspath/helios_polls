@@ -8,10 +8,13 @@ npm install express body-parser --save
 to generate component
 $ ng generate component home
 
-to run mongo shell $ mongo --shell
-to run mongo db $ mongod
-
 ng build
+
+
+you cannot cheat the votes are completely hidden (even in code) til revealed - this is NOT DONE YET
+names for choosing
+card flip effects
+funny messages daily (use api)
 
 TO DO: add icons for picking for each user, save to local storage
 

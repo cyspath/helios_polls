@@ -3,6 +3,7 @@ import { Component, Input, OnInit} from '@angular/core';
 import { StateService } from "../../services/state.service";
 import { ApiService } from "../../services/api.service";
 import { Action } from "../../shared/actions";
+import { IVoter } from "./Voter";
 
 @Component({
 	selector: 'polls-voter',
@@ -12,9 +13,10 @@ import { Action } from "../../shared/actions";
 
 export class VoterComponent implements OnInit {
 	@Input()
-	voter: any;
-	isCurrentUser: boolean;
-	currentUser: any;
+	public voter: IVoter;
+	
+	public isCurrentUser: boolean;
+	public currentUser: any;
 
 	constructor(private _state: StateService, private _api: ApiService) {}
 	
@@ -25,7 +27,7 @@ export class VoterComponent implements OnInit {
 		});
 	}
 
-	private cancelVote() {
+	public cancelVote() {
 		if (this.isCurrentUser && this.currentUser.voted) {
 			this._api.send({ action: Action.CancelVote });
 		}		

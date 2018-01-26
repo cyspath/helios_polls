@@ -33,10 +33,27 @@ const emitCurrentUser = (socket) => {
 	return io.to(socket.id).emit('message', { action: 'CURRENT_USER', value: users[socket.id] });	
 };
 
+const allVoted = (users) => {
+	for (let key in users) {
+		if (users[key].vote === undefined || users[key].voted === false) {
+			return false;
+		}
+	}
+	return true;
+}
+
+const setAll = (options) => {
+	let user;
+	for (let key in users) {
+		user = Object.assign(users[key], options);
+		users[key] = user;
+	}
+}
+
 io.on('connection', (socket) => {
 	
 	if (!users[socket.id]) {
-		users[socket.id] = { id: socket.id, avatar: '★', vote: undefined, voted: false };
+		users[socket.id] = { id: socket.id, avatar: '★', vote: undefined, voted: false, reveal: false };
 	}
 	
 	emitCurrentUser(socket);
@@ -70,6 +87,9 @@ io.on('connection', (socket) => {
 			case 'NEW_VOTE':				
 				users[data.id].vote = data.value;
 				users[data.id].voted = true;
+				if (allVoted(users)) {
+					setAll({ reveal: true });
+				}
 				emitUsers();
 				break;
 
@@ -77,6 +97,14 @@ io.on('connection', (socket) => {
 				for (var id in users) {
 					users[id].voted = false;
 					users[id].vote = undefined;
+					users[id].reveal = false;					
+				}	
+				emitUsers();
+				break;
+				
+			case 'REVEAL_VOTES':
+				for (var id in users) {
+					users[id].reveal = true;					
 				}	
 				emitUsers();
 				break;

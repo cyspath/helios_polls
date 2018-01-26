@@ -5,5 +5,6 @@ export enum Action {
 	NewComment = 'NEW_COMMENT',
 	NewVote = 'NEW_VOTE',
 	ResetVotes = 'RESET_VOTES',
+	RevealVotes = 'REVEAL_VOTES',
 	CancelVote = 'CANCEL_VOTE',
 }

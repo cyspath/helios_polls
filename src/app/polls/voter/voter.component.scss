@@ -1,30 +1,103 @@
 .polls__voter {
     display: inline-block;
 	width: 50px;
+	height: 70px;
+	margin-right: 20px;
+}
+
+.polls__voter .front span {
+	transition: 0.3s;
+	font-size: 24px;
+	line-height: 60px;
+	color: #5d4f46;
+}
+
+.polls__voter.is_current_user.voted .front,
+.polls__voter.is_current_user.voted .back {
+	background-color: #ffdf39;
+	cursor: pointer;
+}
+
+.polls__voter.is_current_user .front,
+.polls__voter.is_current_user .back {
+	background-color: #fff5c1;
+	cursor: pointer;
+}
+
+.polls__voter.voted .front, 
+.polls__voter.voted .back {
+	background-color: #d8f7b7;
+}
+
+.polls__voter .front,
+.polls__voter .back {
+	background-color: #f2f9ea;
+}
+
+.front, .back {
+	width: 50px;
     height: 70px;
-    -webkit-border-radius: 4px;
+	-webkit-border-radius: 4px;
     border-radius: 4px;
     text-align: center;
     cursor: default;
     color: #3e352f;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	background-color: transparent;
+    border: 1px solid #BBB;
+	overflow: hidden;
+	transition: 0.3s;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);	
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    border: 1px solid #BBB;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	overflow: hidden;
 }
 
-.polls__voter.is_current_user {
-    background-color:#ffd7001c;
+
+.flip-container {
+	perspective: 1000px;
+	transform-style: preserve-3d;
 }
 
-.polls__voter.voted {
-	background-color: #E0D9CF;
-	&.is_current_user {
-		background-color: gold;
-		cursor: pointer;
-	}
+.flip-container.flip .flipper {
+	transform: rotateY(180deg);
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.front, .back {
+	backface-visibility: hidden;
+	// transition: 0.6s;
+	transform-style: preserve-3d;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.front {
+	z-index: 2;
+	transform: rotateY(0deg);
+}
+
+.back {
+	transform: rotateY(-180deg);
+}
+
+.vertical.flip-container {
+	position: relative;
+}
+
+.vertical .back {
+	transform: rotateX(180deg);
+}
+
+.vertical.flip-container:hover .back {
+	transform: rotateX(0deg);
+}
+
+.vertical.flip-container:hover .front {
+	transform: rotateX(180deg);
 }

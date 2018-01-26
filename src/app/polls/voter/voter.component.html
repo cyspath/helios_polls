@@ -1,5 +1,18 @@
-
-<div class='polls__voter'
-	[ngClass]="{'is_current_user': isCurrentUser, 'voted': voter.voted}"
-	(click)="cancelVote()">{{ voter.avatar }}
+<div class="polls__voter flip-container"
+	[ngClass]="{
+		'is_current_user': isCurrentUser, 
+		'voted': voter.voted,
+		'flip': voter.voted && voter.reveal}"
+	(click)="cancelVote()"
+	ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			<span *ngIf='voter.voted'>×</span>				
+			<!-- <span *ngIf='voter.voted'>✔</span> -->
+		</div>
+		<div class="back">
+			{{ voter.avatar }}
+			{{ voter.vote }}
+		</div>
+	</div>
 </div>
