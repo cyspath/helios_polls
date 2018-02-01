@@ -1020,7 +1020,8 @@ var WebsocketService = (function () {
         var _this = this;
         // you can hard code `environment.ws_url` as `http://localhost:5000`
         // this.socket = io(environment.ws_url);
-        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__("http://localhost:3000");
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__("https://helios-tuddle.herokuapp.com/");
+        // this.socket = io(`http://localhost:3000`);
         // We define our observable which will observe any incoming messages
         // from our socket.io server.
         var observable = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */](function (observer) {

@@ -16,8 +16,10 @@ export class WebsocketService {
 
   connect(): Rx.Subject<MessageEvent> {
     // you can hard code `environment.ws_url` as `http://localhost:5000`
-    // this.socket = io(environment.ws_url);
-    this.socket = io(`http://localhost:3000`);
+	// this.socket = io(environment.ws_url);
+    this.socket = io(`https://helios-tuddle.herokuapp.com/`);
+	
+    // this.socket = io(`http://localhost:3000`);
 
     // We define our observable which will observe any incoming messages
     // from our socket.io server.
