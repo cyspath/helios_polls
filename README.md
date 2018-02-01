@@ -10,6 +10,10 @@ $ ng generate component home
 
 ng build
 
+	"nodemon": "nodemon server.js",
+	"ng:watch": "ng build --watch",
+
+https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app
 
 you cannot cheat the votes are completely hidden (even in code) til revealed - this is NOT DONE YET
 names for choosing
