@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+const PORT = process.env.PORT || 3000
 const http = require('http').Server(app);
+
 let io = require('socket.io')(http);
 
 // Parsers
@@ -16,8 +18,8 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-http.listen(3000, () => {
-    console.log('started on port 3000');
+http.listen(PORT, () => {
+    console.log(`Listening on ${ PORT }`);
 });
 
 
