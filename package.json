@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
+    "watch": "ng build --watch",
     "nodemon": "nodemon server.js",
-    "ng:watch": "ng build --watch",
     "ng:start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",

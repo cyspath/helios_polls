@@ -8,12 +8,23 @@ npm install express body-parser --save
 to generate component
 $ ng generate component home
 
-ng build
 
+
+Go dev:
 	"nodemon": "nodemon server.js",
-	"ng:watch": "ng build --watch",
+	"watch": "ng build --watch",
+
+
+Go production:
+	ng build
+	add and commit
+	git push heroku master
+
+	heroku logs --tail
+	heroku open
 
 https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app
+
 
 you cannot cheat the votes are completely hidden (even in code) til revealed - this is NOT DONE YET
 names for choosing

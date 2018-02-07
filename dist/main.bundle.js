@@ -597,6 +597,9 @@ var CardComponent = (function () {
         });
     };
     CardComponent.prototype.vote = function () {
+        if (this.voted) {
+            return;
+        }
         this.selected = true;
         this._api.send({ action: __WEBPACK_IMPORTED_MODULE_3__shared_actions__["a" /* Action */].NewVote, value: this.value });
     };

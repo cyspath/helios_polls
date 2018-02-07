@@ -27,6 +27,9 @@ export class CardComponent implements OnInit {
 	}
 
 	vote() {
+		if (this.voted) {
+			return;
+		}
 		this.selected = true;
 		this._api.send({ action: Action.NewVote, value: this.value });
 	}
