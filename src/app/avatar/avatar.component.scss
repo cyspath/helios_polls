@@ -3,8 +3,25 @@
 .avatar-input {
 	@include transition(0.3s);
 
-	width: 20px;
+	width: 34px;
+    border-radius: 50%;
+    border: none;
+	border:1px solid #ced0d4;
+	padding: 5px 10px;
+	outline: none;
+	font-size: 14px;
+	cursor: pointer;
+
 	&:focus {
+		cursor: default;		
+		border-radius: 5px;		
 		width: 100px;
-	}	
+	}
+
+	// &::placeholder,
+	// &:-ms-input-placeholder,
+	// &::-ms-input-placeholder {
+	// 	opacity: 0;
+	// 	color: yellow;
+	// }
 }

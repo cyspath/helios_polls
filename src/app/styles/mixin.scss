@@ -2,3 +2,9 @@
 	transition: $seconds ease-in-out;	
 	-webkit-transition: $seconds ease-in-out;
 }
+
+@mixin ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

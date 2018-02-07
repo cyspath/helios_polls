@@ -38,9 +38,9 @@ export class PollsComponent implements OnInit {
 		this._state.resetVotes();
 	}
 
-	public newRoom() {
-		this._state.newRoom();
-	}
+	// public newRoom() {
+	// 	this._state.newRoom();
+	// }
 
 	public reveal() {
 		this._state.revealVotes();

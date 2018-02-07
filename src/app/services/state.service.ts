@@ -67,7 +67,7 @@ export class StateService {
 		this._api.send({ action: Action.RevealVotes });		
 	}
 
-	public newRoom() {		
-		this._api.send({ action: Action.NewRoom });
-	}
+	// public newRoom() {		
+	// 	this._api.send({ action: Action.NewRoom });
+	// }
 }

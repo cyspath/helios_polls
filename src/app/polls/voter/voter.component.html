@@ -8,7 +8,7 @@
 	<div class="flipper">
 		<div class="front">
 			<div class='voted-text' *ngIf='voter.voted'><div>×</div></div>
-			<div class='avatar-text'>{{ voter.avatar }}</div>		
+			<div class='avatar-text'><div>{{ voter.avatar }}</div></div>		
 		</div>
 		<div class="back"
 			[ngClass]="{ 'green': result === Result.Same }">

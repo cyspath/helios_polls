@@ -267,7 +267,7 @@ var AppModule = (function () {
 /***/ "../../../../../src/app/avatar/avatar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<input \n\t#avatarInput\n\tclass=\"avatar-input\"\n\tplaceholder=\"Name\"\n\t[(ngModel)]=\"text\" \n\t(focusout)=\"focusOut()\"\n\t(keyup.enter)=\"handleClick($event)\">\n\t"
+module.exports = "<input \n\t#avatarInput\n\tclass=\"avatar-input\"\n\t[(ngModel)]=\"text\" \n\t(focusout)=\"focusOut()\"\n\t(keyup.enter)=\"handleClick($event)\">\n\t"
 
 /***/ }),
 
@@ -279,7 +279,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".avatar-input {\n  transition: 0.3s ease-in-out;\n  -webkit-transition: 0.3s ease-in-out;\n  width: 20px; }\n  .avatar-input:focus {\n    width: 100px; }\n", ""]);
+exports.push([module.i, ".avatar-input {\n  transition: 0.3s ease-in-out;\n  -webkit-transition: 0.3s ease-in-out;\n  width: 34px;\n  border-radius: 50%;\n  border: none;\n  border: 1px solid #ced0d4;\n  padding: 5px 10px;\n  outline: none;\n  font-size: 14px;\n  cursor: pointer; }\n  .avatar-input:focus {\n    cursor: default;\n    border-radius: 5px;\n    width: 100px; }\n", ""]);
 
 // exports
 
@@ -640,7 +640,7 @@ var CardComponent = (function () {
 /***/ "../../../../../src/app/polls/polls.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"reveal()\">\n\tReveal\n</button>  \n\n<button \n    class=\"btn btn-primary btn-sm\"\n    type=\"button\"\n    (click)=\"reset()\">\n    Reset\n</button>  \n\n<button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"newRoom()\">\n\tNew Room\n</button>  "
+module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"reveal()\">\n\tReveal\n</button>  \n\n<button \n    class=\"btn btn-primary btn-sm\"\n    type=\"button\"\n    (click)=\"reset()\">\n    Reset\n</button>  \n\n<!-- <button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"newRoom()\">\n\tNew Room\n</button>   -->"
 
 /***/ }),
 
@@ -706,9 +706,9 @@ var PollsComponent = (function () {
     PollsComponent.prototype.reset = function () {
         this._state.resetVotes();
     };
-    PollsComponent.prototype.newRoom = function () {
-        this._state.newRoom();
-    };
+    // public newRoom() {
+    // 	this._state.newRoom();
+    // }
     PollsComponent.prototype.reveal = function () {
         this._state.revealVotes();
     };
@@ -745,7 +745,7 @@ var PollsComponent = (function () {
 /***/ "../../../../../src/app/polls/voter/voter.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"polls__voter flip-container\"\n\t[ngClass]=\"{\n\t\t'is_current_user': isCurrentUser, \n\t\t'voted': voter.voted,\n\t\t'flip': voter.voted && voter.reveal}\"\n\t(click)=\"cancelVote()\"\n\tontouchstart=\"this.classList.toggle('hover');\">\n\t<div class=\"flipper\">\n\t\t<div class=\"front\">\n\t\t\t<div class='voted-text' *ngIf='voter.voted'><div>×</div></div>\n\t\t\t<div class='avatar-text'>{{ voter.avatar }}</div>\t\t\n\t\t</div>\n\t\t<div class=\"back\"\n\t\t\t[ngClass]=\"{ 'green': result === Result.Same }\">\n\t\t\t<div class='voted-text' *ngIf='voter.voted'><div>{{ voter.vote }}</div></div>\n\t\t\t<div class='avatar-text'>{{ voter.avatar }}</div>\t\t\t\t\t\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div class=\"polls__voter flip-container\"\n\t[ngClass]=\"{\n\t\t'is_current_user': isCurrentUser, \n\t\t'voted': voter.voted,\n\t\t'flip': voter.voted && voter.reveal}\"\n\t(click)=\"cancelVote()\"\n\tontouchstart=\"this.classList.toggle('hover');\">\n\t<div class=\"flipper\">\n\t\t<div class=\"front\">\n\t\t\t<div class='voted-text' *ngIf='voter.voted'><div>×</div></div>\n\t\t\t<div class='avatar-text'><div>{{ voter.avatar }}</div></div>\t\t\n\t\t</div>\n\t\t<div class=\"back\"\n\t\t\t[ngClass]=\"{ 'green': result === Result.Same }\">\n\t\t\t<div class='voted-text' *ngIf='voter.voted'><div>{{ voter.vote }}</div></div>\n\t\t\t<div class='avatar-text'>{{ voter.avatar }}</div>\t\t\t\t\t\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -757,7 +757,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".polls__voter {\n  display: inline-block;\n  width: 50px;\n  height: 70px;\n  margin-right: 20px; }\n\n.polls__voter .front span {\n  transition: 0.3s;\n  font-size: 24px;\n  line-height: 60px;\n  color: #5d4f46; }\n\n.polls__voter.is_current_user.voted .front,\n.polls__voter.is_current_user.voted .back {\n  background-color: gold;\n  cursor: pointer; }\n\n.polls__voter.is_current_user .front,\n.polls__voter.is_current_user .back {\n  background-color: #fff5c1;\n  cursor: pointer; }\n\n.polls__voter.voted .front,\n.polls__voter.voted .back {\n  background-color: #dbd3c9; }\n\n.polls__voter.voted .back.green {\n  background-color: #7ccd7c; }\n\n.polls__voter .front,\n.polls__voter .back {\n  background-color: #efeeee; }\n  .polls__voter .front .avatar-text,\n  .polls__voter .back .avatar-text {\n    position: absolute;\n    bottom: 2px;\n    right: 4px;\n    font-size: 10px;\n    opacity: 0.5; }\n  .polls__voter .front .voted-text,\n  .polls__voter .back .voted-text {\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    font-size: 20px; }\n\n.front, .back {\n  width: 50px;\n  height: 70px;\n  border-radius: 4px;\n  text-align: center;\n  cursor: default;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  border: 1px solid #BBB;\n  overflow: hidden;\n  transition: 0.3s;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }\n\n.flip-container {\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d; }\n\n.flip-container.flip .flipper {\n  -webkit-transform: rotateY(180deg);\n          transform: rotateY(180deg); }\n\n.flipper {\n  transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: relative; }\n\n.front, .back {\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.front {\n  z-index: 2;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg); }\n\n.back {\n  -webkit-transform: rotateY(-180deg);\n          transform: rotateY(-180deg); }\n\n.vertical.flip-container {\n  position: relative; }\n\n.vertical .back {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n\n.vertical.flip-container:hover .back {\n  -webkit-transform: rotateX(0deg);\n          transform: rotateX(0deg); }\n\n.vertical.flip-container:hover .front {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n", ""]);
+exports.push([module.i, ".polls__voter {\n  display: inline-block;\n  width: 50px;\n  height: 70px;\n  margin-right: 20px; }\n\n.polls__voter .front span {\n  transition: 0.3s;\n  font-size: 24px;\n  line-height: 60px;\n  color: #5d4f46; }\n\n.polls__voter.is_current_user.voted .front,\n.polls__voter.is_current_user.voted .back {\n  background-color: gold;\n  cursor: pointer; }\n\n.polls__voter.is_current_user .front,\n.polls__voter.is_current_user .back {\n  background-color: #fff5c1;\n  cursor: pointer; }\n\n.polls__voter.voted .front,\n.polls__voter.voted .back {\n  background-color: #dbd3c9; }\n\n.polls__voter.voted .back.green {\n  background-color: #7ccd7c; }\n\n.polls__voter .front,\n.polls__voter .back {\n  background-color: #efeeee; }\n  .polls__voter .front .avatar-text,\n  .polls__voter .back .avatar-text {\n    position: absolute;\n    font-size: 10px;\n    bottom: 0;\n    opacity: 0.5;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n    .polls__voter .front .avatar-text div,\n    .polls__voter .back .avatar-text div {\n      padding: 2px;\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n  .polls__voter .front .voted-text,\n  .polls__voter .back .voted-text {\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    font-size: 20px; }\n\n.front, .back {\n  width: 50px;\n  height: 70px;\n  border-radius: 4px;\n  text-align: center;\n  cursor: default;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  border: 1px solid #BBB;\n  overflow: hidden;\n  transition: 0.3s;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }\n\n.flip-container {\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d; }\n\n.flip-container.flip .flipper {\n  -webkit-transform: rotateY(180deg);\n          transform: rotateY(180deg); }\n\n.flipper {\n  transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: relative; }\n\n.front, .back {\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.front {\n  z-index: 2;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg); }\n\n.back {\n  -webkit-transform: rotateY(-180deg);\n          transform: rotateY(-180deg); }\n\n.vertical.flip-container {\n  position: relative; }\n\n.vertical .back {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n\n.vertical.flip-container:hover .back {\n  -webkit-transform: rotateX(0deg);\n          transform: rotateX(0deg); }\n\n.vertical.flip-container:hover .front {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n", ""]);
 
 // exports
 
@@ -1000,9 +1000,6 @@ var StateService = (function () {
     StateService.prototype.revealVotes = function () {
         this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].RevealVotes });
     };
-    StateService.prototype.newRoom = function () {
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].NewRoom });
-    };
     StateService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__api_service__["a" /* ApiService */]])
@@ -1044,9 +1041,7 @@ var WebsocketService = (function () {
     }
     WebsocketService.prototype.connect = function () {
         var _this = this;
-        // you can hard code `environment.ws_url` as `http://localhost:5000`
-        // this.socket = io(environment.ws_url);
-        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__("https://helios-tuddle.herokuapp.com/");
+        this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__(window.location.origin);
         // this.socket = io(`http://localhost:3000`);
         // We define our observable which will observe any incoming messages
         // from our socket.io server.
