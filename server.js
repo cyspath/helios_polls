@@ -18,7 +18,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-http.listen(5000, () => {
+http.listen(PORT, () => {
     console.log(`Tuddle is listening on ${ PORT }`);
 });
 
