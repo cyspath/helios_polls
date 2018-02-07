@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-const avatarKey = 'duku-avatar';
+import { Constant } from '../shared/Constant';
+
+const avatarKey = `${Constant.AppName}-avatar`;
 
 @Injectable()
 export class LocalStoreService {
@@ -11,6 +13,5 @@ export class LocalStoreService {
 
   setAvatar(avatar) {
 	  localStorage.setItem(avatarKey, avatar);
-	
   }
 }

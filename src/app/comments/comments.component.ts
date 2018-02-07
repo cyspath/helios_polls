@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, animate, keyframes, query, stagger } from "@angular/animations";
 import { StateService } from "../services/state.service";
 import { ApiService } from "../services/api.service";
-import { Action } from "../shared/actions";
+import { Action } from "../shared/Actions";
 
 @Component({
   selector: 'app-comments',

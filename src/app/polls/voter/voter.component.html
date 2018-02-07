@@ -7,12 +7,13 @@
 	ontouchstart="this.classList.toggle('hover');">
 	<div class="flipper">
 		<div class="front">
-			<span *ngIf='voter.voted'>×</span>				
+			<div class='voted-text' *ngIf='voter.voted'><div>×</div></div>
+			<div class='avatar-text'>{{ voter.avatar }}</div>		
 		</div>
 		<div class="back"
 			[ngClass]="{ 'green': result === Result.Same }">
-			{{ voter.avatar }}
-			{{ voter.vote }}
+			<div class='voted-text' *ngIf='voter.voted'><div>{{ voter.vote }}</div></div>
+			<div class='avatar-text'>{{ voter.avatar }}</div>					
 		</div>
 	</div>
 </div>

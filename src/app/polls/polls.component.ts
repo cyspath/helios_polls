@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { StateService } from "../services/state.service";
 import { ApiService } from "../services/api.service";
-import { Action } from "../shared/actions";
+import { Action } from "../shared/Actions";
 import { IVoter } from "./voter/Voter";
 import { Result } from "./Result.enum";
 
@@ -36,6 +36,10 @@ export class PollsComponent implements OnInit {
 
 	public reset() {
 		this._state.resetVotes();
+	}
+
+	public newRoom() {
+		this._state.newRoom();
 	}
 
 	public reveal() {

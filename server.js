@@ -18,8 +18,8 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-http.listen(PORT, () => {
-    console.log(`Listening on ${ PORT }`);
+http.listen(5000, () => {
+    console.log(`Tuddle is listening on ${ PORT }`);
 });
 
 
@@ -52,10 +52,15 @@ const setAll = (options) => {
 	}
 }
 
+const newRoom = () => {
+	users = {};
+	comments = [];
+}
+
 io.on('connection', (socket) => {
 	
 	if (!users[socket.id]) {
-		users[socket.id] = { id: socket.id, avatar: '★', vote: undefined, voted: false, reveal: false };
+		users[socket.id] = { id: socket.id, avatar: '', vote: undefined, voted: false, reveal: false };
 	}
 	
 	emitCurrentUser(socket);
@@ -75,9 +80,9 @@ io.on('connection', (socket) => {
 		console.log('Server: received message', data);
 	
 		switch(data.action) {
-			
-			case 'UPDATE_AVATAR':				
-				users[data.id].avatar = data.value;				
+			case 'CANCEL_VOTE':				
+				users[data.id].vote = undefined;
+				users[data.id].voted = false;				
 				emitUsers();
 				break;
 
@@ -85,8 +90,15 @@ io.on('connection', (socket) => {
 				comments.push({ id: data.id, value: data.value });
 				io.emit('message', data);
 				break;
-
-			case 'NEW_VOTE':				
+			
+			case 'NEW_ROOM':				
+				newRoom();
+				io.emit('message', data);				
+				emitUsers;
+				break;
+						
+			case 'NEW_VOTE':	
+				console.log('new vote')			
 				users[data.id].vote = data.value;
 				users[data.id].voted = true;
 				if (allVoted(users)) {
@@ -110,10 +122,9 @@ io.on('connection', (socket) => {
 				}	
 				emitUsers();
 				break;
-
-			case 'CANCEL_VOTE':				
-				users[data.id].vote = undefined;
-				users[data.id].voted = false;				
+			
+			case 'UPDATE_AVATAR':				
+				users[data.id].avatar = data.value;				
 				emitUsers();
 				break;
 

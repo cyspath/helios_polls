@@ -1,0 +1,4 @@
+@mixin transition($seconds) {
+	transition: $seconds ease-in-out;	
+	-webkit-transition: $seconds ease-in-out;
+}

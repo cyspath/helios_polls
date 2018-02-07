@@ -1,0 +1,10 @@
+@import '../styles/mixin';
+
+.avatar-input {
+	@include transition(0.3s);
+
+	width: 20px;
+	&:focus {
+		width: 100px;
+	}	
+}

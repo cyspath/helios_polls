@@ -206,7 +206,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__avatars_avatars_component__ = __webpack_require__("../../../../../src/app/avatars/avatars.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__avatar_avatar_component__ = __webpack_require__("../../../../../src/app/avatar/avatar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__comments_comments_component__ = __webpack_require__("../../../../../src/app/comments/comments.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__polls_polls_component__ = __webpack_require__("../../../../../src/app/polls/polls.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__polls_card_card_component__ = __webpack_require__("../../../../../src/app/polls/card/card.component.ts");
@@ -241,7 +241,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__home_home_component__["a" /* HomeComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__about_about_component__["a" /* AboutComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__avatars_avatars_component__["a" /* AvatarsComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__avatar_avatar_component__["a" /* AvatarComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__comments_comments_component__["a" /* CommentsComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__polls_polls_component__["a" /* PollsComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__polls_card_card_component__["a" /* CardComponent */],
@@ -264,14 +264,14 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/avatars/avatars.component.html":
+/***/ "../../../../../src/app/avatar/avatar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<button\n\t*ngFor=\"let value of values\"\n\t(click)=\"setAvatar(value)\">{{ value }}\n</button>\n"
+module.exports = "<input \n\t#avatarInput\n\tclass=\"avatar-input\"\n\tplaceholder=\"Name\"\n\t[(ngModel)]=\"text\" \n\t(focusout)=\"focusOut()\"\n\t(keyup.enter)=\"handleClick($event)\">\n\t"
 
 /***/ }),
 
-/***/ "../../../../../src/app/avatars/avatars.component.scss":
+/***/ "../../../../../src/app/avatar/avatar.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -279,7 +279,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".avatar-input {\n  transition: 0.3s ease-in-out;\n  -webkit-transition: 0.3s ease-in-out;\n  width: 20px; }\n  .avatar-input:focus {\n    width: 100px; }\n", ""]);
 
 // exports
 
@@ -289,14 +289,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/avatars/avatars.component.ts":
+/***/ "../../../../../src/app/avatar/avatar.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AvatarsComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AvatarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services__ = __webpack_require__("../../../../../src/app/services/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_actions__ = __webpack_require__("../../../../../src/app/shared/actions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -309,33 +309,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-var AvatarsComponent = (function () {
-    function AvatarsComponent(_state, _api, _localStore) {
+var AvatarComponent = (function () {
+    function AvatarComponent(_state, _api, _localStore) {
         this._state = _state;
         this._api = _api;
         this._localStore = _localStore;
-        this.values = ['JH', 'ML', 'KS', 'LR'];
+        this.text = '';
     }
-    AvatarsComponent.prototype.ngOnInit = function () {
+    AvatarComponent.prototype.ngOnInit = function () {
         var avatar = this._localStore.getAvatar();
         if (avatar) {
             console.log("AvatarsComponent: avatar found! " + avatar);
             this.setAvatar(avatar);
         }
     };
-    AvatarsComponent.prototype.setAvatar = function (avatar) {
-        this._localStore.setAvatar(avatar);
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_2__shared_actions__["a" /* Action */].UpdateAvatar, value: avatar });
+    AvatarComponent.prototype.focusOut = function () {
+        this.text = '';
     };
-    AvatarsComponent = __decorate([
+    AvatarComponent.prototype.handleClick = function (event) {
+        this.text = '';
+        this.avatarInput.nativeElement.blur();
+        var avatar = event.target.value;
+        if (avatar.length > 0) {
+            this.setAvatar(avatar);
+        }
+    };
+    AvatarComponent.prototype.setAvatar = function (avatar) {
+        this._localStore.setAvatar(avatar);
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_2__shared_Actions__["a" /* Action */].UpdateAvatar, value: avatar });
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('avatarInput'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */])
+    ], AvatarComponent.prototype, "avatarInput", void 0);
+    AvatarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'avatars',
-            template: __webpack_require__("../../../../../src/app/avatars/avatars.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/avatars/avatars.component.scss")]
+            template: __webpack_require__("../../../../../src/app/avatar/avatar.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/avatar/avatar.component.scss")]
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services__["c" /* StateService */], __WEBPACK_IMPORTED_MODULE_1__services__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_1__services__["b" /* LocalStoreService */]])
-    ], AvatarsComponent);
-    return AvatarsComponent;
+    ], AvatarComponent);
+    return AvatarComponent;
 }());
 
 
@@ -376,7 +391,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__("../../../animations/esm5/animations.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_actions__ = __webpack_require__("../../../../../src/app/shared/actions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -411,7 +426,7 @@ var CommentsComponent = (function () {
     };
     CommentsComponent.prototype.addItem = function () {
         // this.comments.push(this.commentText);
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_actions__["a" /* Action */].NewComment, value: this.commentText });
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].NewComment, value: this.commentText });
         // this.commentText = '';
         // this.emitChange();
     };
@@ -566,7 +581,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_actions__ = __webpack_require__("../../../../../src/app/shared/actions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -601,7 +616,7 @@ var CardComponent = (function () {
             return;
         }
         this.selected = true;
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_3__shared_actions__["a" /* Action */].NewVote, value: this.value });
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_3__shared_Actions__["a" /* Action */].NewVote, value: this.value });
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
@@ -625,7 +640,7 @@ var CardComponent = (function () {
 /***/ "../../../../../src/app/polls/polls.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"reveal()\">\n\tReveal\n</button>  \n\n<button \n    class=\"btn btn-primary btn-sm\"\n    type=\"button\"\n    (click)=\"reset()\">\n    Reset\n</button>  \n"
+module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"reveal()\">\n\tReveal\n</button>  \n\n<button \n    class=\"btn btn-primary btn-sm\"\n    type=\"button\"\n    (click)=\"reset()\">\n    Reset\n</button>  \n\n<button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"newRoom()\">\n\tNew Room\n</button>  "
 
 /***/ }),
 
@@ -691,6 +706,9 @@ var PollsComponent = (function () {
     PollsComponent.prototype.reset = function () {
         this._state.resetVotes();
     };
+    PollsComponent.prototype.newRoom = function () {
+        this._state.newRoom();
+    };
     PollsComponent.prototype.reveal = function () {
         this._state.revealVotes();
     };
@@ -727,7 +745,7 @@ var PollsComponent = (function () {
 /***/ "../../../../../src/app/polls/voter/voter.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"polls__voter flip-container\"\n\t[ngClass]=\"{\n\t\t'is_current_user': isCurrentUser, \n\t\t'voted': voter.voted,\n\t\t'flip': voter.voted && voter.reveal}\"\n\t(click)=\"cancelVote()\"\n\tontouchstart=\"this.classList.toggle('hover');\">\n\t<div class=\"flipper\">\n\t\t<div class=\"front\">\n\t\t\t<span *ngIf='voter.voted'>×</span>\t\t\t\t\n\t\t</div>\n\t\t<div class=\"back\"\n\t\t\t[ngClass]=\"{ 'green': result === Result.Same }\">\n\t\t\t{{ voter.avatar }}\n\t\t\t{{ voter.vote }}\n\t\t</div>\n\t</div>\n</div>"
+module.exports = "<div class=\"polls__voter flip-container\"\n\t[ngClass]=\"{\n\t\t'is_current_user': isCurrentUser, \n\t\t'voted': voter.voted,\n\t\t'flip': voter.voted && voter.reveal}\"\n\t(click)=\"cancelVote()\"\n\tontouchstart=\"this.classList.toggle('hover');\">\n\t<div class=\"flipper\">\n\t\t<div class=\"front\">\n\t\t\t<div class='voted-text' *ngIf='voter.voted'><div>×</div></div>\n\t\t\t<div class='avatar-text'>{{ voter.avatar }}</div>\t\t\n\t\t</div>\n\t\t<div class=\"back\"\n\t\t\t[ngClass]=\"{ 'green': result === Result.Same }\">\n\t\t\t<div class='voted-text' *ngIf='voter.voted'><div>{{ voter.vote }}</div></div>\n\t\t\t<div class='avatar-text'>{{ voter.avatar }}</div>\t\t\t\t\t\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -739,7 +757,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".polls__voter {\n  display: inline-block;\n  width: 50px;\n  height: 70px;\n  margin-right: 20px; }\n\n.polls__voter .front span {\n  transition: 0.3s;\n  font-size: 24px;\n  line-height: 60px;\n  color: #5d4f46; }\n\n.polls__voter.is_current_user.voted .front,\n.polls__voter.is_current_user.voted .back {\n  background-color: gold;\n  cursor: pointer; }\n\n.polls__voter.is_current_user .front,\n.polls__voter.is_current_user .back {\n  background-color: #fff5c1;\n  cursor: pointer; }\n\n.polls__voter.voted .front,\n.polls__voter.voted .back {\n  background-color: #dbd3c9; }\n\n.polls__voter.voted .back.green {\n  background-color: #7ccd7c; }\n\n.polls__voter .front,\n.polls__voter .back {\n  background-color: #efeeee; }\n\n.front, .back {\n  width: 50px;\n  height: 70px;\n  border-radius: 4px;\n  text-align: center;\n  cursor: default;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  border: 1px solid #BBB;\n  overflow: hidden;\n  transition: 0.3s;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }\n\n.flip-container {\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d; }\n\n.flip-container.flip .flipper {\n  -webkit-transform: rotateY(180deg);\n          transform: rotateY(180deg); }\n\n.flipper {\n  transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: relative; }\n\n.front, .back {\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.front {\n  z-index: 2;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg); }\n\n.back {\n  -webkit-transform: rotateY(-180deg);\n          transform: rotateY(-180deg); }\n\n.vertical.flip-container {\n  position: relative; }\n\n.vertical .back {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n\n.vertical.flip-container:hover .back {\n  -webkit-transform: rotateX(0deg);\n          transform: rotateX(0deg); }\n\n.vertical.flip-container:hover .front {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n", ""]);
+exports.push([module.i, ".polls__voter {\n  display: inline-block;\n  width: 50px;\n  height: 70px;\n  margin-right: 20px; }\n\n.polls__voter .front span {\n  transition: 0.3s;\n  font-size: 24px;\n  line-height: 60px;\n  color: #5d4f46; }\n\n.polls__voter.is_current_user.voted .front,\n.polls__voter.is_current_user.voted .back {\n  background-color: gold;\n  cursor: pointer; }\n\n.polls__voter.is_current_user .front,\n.polls__voter.is_current_user .back {\n  background-color: #fff5c1;\n  cursor: pointer; }\n\n.polls__voter.voted .front,\n.polls__voter.voted .back {\n  background-color: #dbd3c9; }\n\n.polls__voter.voted .back.green {\n  background-color: #7ccd7c; }\n\n.polls__voter .front,\n.polls__voter .back {\n  background-color: #efeeee; }\n  .polls__voter .front .avatar-text,\n  .polls__voter .back .avatar-text {\n    position: absolute;\n    bottom: 2px;\n    right: 4px;\n    font-size: 10px;\n    opacity: 0.5; }\n  .polls__voter .front .voted-text,\n  .polls__voter .back .voted-text {\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    font-size: 20px; }\n\n.front, .back {\n  width: 50px;\n  height: 70px;\n  border-radius: 4px;\n  text-align: center;\n  cursor: default;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  border: 1px solid #BBB;\n  overflow: hidden;\n  transition: 0.3s;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }\n\n.flip-container {\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d; }\n\n.flip-container.flip .flipper {\n  -webkit-transform: rotateY(180deg);\n          transform: rotateY(180deg); }\n\n.flipper {\n  transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: relative; }\n\n.front, .back {\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.front {\n  z-index: 2;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg); }\n\n.back {\n  -webkit-transform: rotateY(-180deg);\n          transform: rotateY(-180deg); }\n\n.vertical.flip-container {\n  position: relative; }\n\n.vertical .back {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n\n.vertical.flip-container:hover .back {\n  -webkit-transform: rotateX(0deg);\n          transform: rotateX(0deg); }\n\n.vertical.flip-container:hover .front {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n", ""]);
 
 // exports
 
@@ -757,7 +775,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_actions__ = __webpack_require__("../../../../../src/app/shared/actions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Result_enum__ = __webpack_require__("../../../../../src/app/polls/Result.enum.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -788,7 +806,7 @@ var VoterComponent = (function () {
     };
     VoterComponent.prototype.cancelVote = function () {
         if (this.isCurrentUser && this.currentUser.voted) {
-            this._api.send({ action: __WEBPACK_IMPORTED_MODULE_3__shared_actions__["a" /* Action */].CancelVote });
+            this._api.send({ action: __WEBPACK_IMPORTED_MODULE_3__shared_Actions__["a" /* Action */].CancelVote });
         }
     };
     __decorate([
@@ -882,6 +900,7 @@ var ApiService = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocalStoreService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_Constant__ = __webpack_require__("../../../../../src/app/shared/Constant.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -889,7 +908,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
-var avatarKey = 'duku-avatar';
+
+var avatarKey = __WEBPACK_IMPORTED_MODULE_1__shared_Constant__["a" /* Constant */].AppName + "-avatar";
 var LocalStoreService = (function () {
     function LocalStoreService() {
     }
@@ -918,7 +938,7 @@ var LocalStoreService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_actions__ = __webpack_require__("../../../../../src/app/shared/actions.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -939,7 +959,7 @@ var StateService = (function () {
         this._api = _api;
         this.user = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]({
             id: '',
-            avatar: '★',
+            avatar: '',
             voted: false,
             vote: undefined,
             reveal: false
@@ -949,12 +969,12 @@ var StateService = (function () {
         var userId;
         this._api.messages.subscribe(function (msg) {
             switch (msg.action) {
-                case __WEBPACK_IMPORTED_MODULE_4__shared_actions__["a" /* Action */].CurrentUser:
+                case __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].CurrentUser:
                     var user = msg.value;
                     userId = user.id;
                     _this.user.next(user);
                     break;
-                case __WEBPACK_IMPORTED_MODULE_4__shared_actions__["a" /* Action */].UpdateUsers:
+                case __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].UpdateUsers:
                     var users = msg.value; // users hash from server
                     _this.user.next(users[userId]);
                     _this.voters.next(Object.values(users));
@@ -975,10 +995,13 @@ var StateService = (function () {
         this.commentable.next(comments);
     };
     StateService.prototype.resetVotes = function () {
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_actions__["a" /* Action */].ResetVotes });
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].ResetVotes });
     };
     StateService.prototype.revealVotes = function () {
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_actions__["a" /* Action */].RevealVotes });
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].RevealVotes });
+    };
+    StateService.prototype.newRoom = function () {
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].NewRoom });
     };
     StateService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -1059,7 +1082,7 @@ var WebsocketService = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/shared/actions.ts":
+/***/ "../../../../../src/app/shared/Actions.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1074,7 +1097,20 @@ var Action;
     Action["ResetVotes"] = "RESET_VOTES";
     Action["RevealVotes"] = "REVEAL_VOTES";
     Action["CancelVote"] = "CANCEL_VOTE";
+    Action["NewRoom"] = "NEW_ROOM";
 })(Action || (Action = {}));
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/Constant.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Constant; });
+var Constant = {
+    AppName: 'helios-tuddle',
+};
 
 
 /***/ }),
@@ -1109,7 +1145,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });

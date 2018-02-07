@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { AvatarsComponent } from './avatars/avatars.component';
+import { AvatarComponent } from './avatar/avatar.component';
 import { CommentsComponent } from './comments/comments.component';
 import { PollsComponent } from './polls/polls.component';
 import { CardComponent } from './polls/card/card.component';
@@ -21,7 +21,7 @@ import { ApiService, LocalStoreService, StateService, WebsocketService } from ".
     AppComponent,
     HomeComponent,
 	AboutComponent,
-	AvatarsComponent,
+	AvatarComponent,
     CommentsComponent,
     PollsComponent,
     CardComponent,

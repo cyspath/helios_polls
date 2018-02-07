@@ -2,7 +2,7 @@ import { Component, Input, OnInit} from '@angular/core';
 
 import { StateService } from "../../services/state.service";
 import { ApiService } from "../../services/api.service";
-import { Action } from "../../shared/actions";
+import { Action } from "../../shared/Actions";
 import { IVoter } from "./Voter";
 import { Result } from "../Result.enum";
 

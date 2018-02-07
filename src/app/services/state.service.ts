@@ -5,7 +5,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { ApiService } from "./api.service";
-import { Action } from "../shared/actions";
+import { Action } from "../shared/Actions";
 import { IVoter } from "../polls/voter/Voter";
 
 @Injectable()
@@ -13,7 +13,7 @@ export class StateService {
 
 	public user = new BehaviorSubject<IVoter>({ 
 		id: '',
-		avatar: '★',
+		avatar: '',
 		voted: false, 
 		vote: undefined,
 		reveal: false
@@ -65,5 +65,9 @@ export class StateService {
 
 	public revealVotes() {
 		this._api.send({ action: Action.RevealVotes });		
+	}
+
+	public newRoom() {		
+		this._api.send({ action: Action.NewRoom });
 	}
 }
