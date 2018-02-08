@@ -5,6 +5,8 @@ const app = express();
 const PORT = process.env.PORT || 5000
 const http = require('http').Server(app);
 
+require('heroku-self-ping')("https://helios-tuddle.herokuapp.com/");
+
 let io = require('socket.io')(http);
 
 // Parsers

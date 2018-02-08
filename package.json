@@ -28,6 +28,7 @@
     "core-js": "^2.4.1",
     "express": "^4.16.2",
     "font-awesome": "^4.7.0",
+    "heroku-self-ping": "^1.1.4",
     "mongodb": "^2.2.33",
     "morgan": "^1.9.0",
     "rxjs": "^5.5.2",
