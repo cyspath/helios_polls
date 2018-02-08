@@ -640,7 +640,7 @@ var CardComponent = (function () {
 /***/ "../../../../../src/app/polls/polls.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<div class=\"card-container\">\n\t\t\t\n\t<button \n\t\tclass=\"btn btn-primary btn-sm\"\n\t\ttype=\"button\"\n\t\t(click)=\"reveal()\">\n\t\tReveal\n\t</button>  \n\n\t<button \n\t\tclass=\"btn btn-primary btn-sm\"\n\t\ttype=\"button\"\n\t\t(click)=\"reset()\">\n\t\tReset\n\t</button>  \n\n</div>"
+module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<div class=\"card-container\">\n\t\t\n\t<div class='btn-3d'>\t\t\n\t\t<button \n\t\t\ttype=\"button\"\n\t\t\t(click)=\"reveal()\">\n\t\t\tReveal\n\t\t</button>  \n\t</div>\n\n\t<div class='btn-3d'>\n\t\t<button \n\t\t\ttype=\"button\"\n\t\t\t(click)=\"reset()\">\n\t\t\tReset\n\t\t</button>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -652,7 +652,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-container {\n  padding: 20px;\n  color: white;\n  text-shadow: 0px 0px 4px #000000; }\n", ""]);
+exports.push([module.i, ".card-container {\n  padding: 20px;\n  color: white;\n  text-shadow: 0px 0px 4px #000000; }\n\n.btn-3d {\n  margin-right: 20px; }\n", ""]);
 
 // exports
 
