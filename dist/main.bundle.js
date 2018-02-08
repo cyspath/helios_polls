@@ -138,7 +138,7 @@ var AppRoutingModule = (function () {
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ul>\n\t<li><a routerLink=\"\">Home</a></li>\n\t<li><a routerLink=\"about/21\">About</a></li>\n</ul> -->\n\n<div class=\"main-content-container\">\n\t<div class=\"main-content\">\n\t\t<router-outlet></router-outlet>\n\t</div>\n</div>"
+module.exports = "<!-- <ul>\n\t<li><a routerLink=\"\">Home</a></li>\n\t<li><a routerLink=\"about/21\">About</a></li>\n</ul> -->\n\n<div class=\"main-content-container\">\n\t<div class=\"main-content\">\n\t\t<router-outlet></router-outlet>\n\t\t<div class='main-content-background'></div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -150,7 +150,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".main-content-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  height: 100%;\n  background-color: #c2d4d8; }\n  .main-content-container .main-content {\n    background-color: #dbe9d8;\n    max-width: 980px;\n    padding: 30px 0; }\n", ""]);
+exports.push([module.i, ".main-content-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  height: 100%; }\n  .main-content-container .main-content {\n    position: relative;\n    max-width: 980px;\n    width: 680px;\n    padding: 30px 0; }\n    .main-content-container .main-content .main-content-background {\n      width: 100%;\n      height: 100%;\n      z-index: -1;\n      position: absolute;\n      bottom: 0;\n      background-image: url(" + __webpack_require__("../../../../../src/assets/images/deer-background.jpg") + ");\n      background-size: cover;\n      -webkit-filter: blur(2px);\n      -moz-filter: blur(2px);\n      -o-filter: blur(2px);\n      -ms-filter: blur(2px);\n      filter: blur(2px); }\n", ""]);
 
 // exports
 
@@ -279,7 +279,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  position: relative; }\n\n.avatar-input {\n  transition: 0.3s ease-in-out;\n  -webkit-transition: 0.3s ease-in-out;\n  height: 33px;\n  width: 33px;\n  border-radius: 50%;\n  border: none;\n  border: 1px solid #ced0d4;\n  padding: 5px 10px 5px 20px;\n  outline: none;\n  font-size: 14px;\n  cursor: pointer; }\n  .avatar-input:focus {\n    cursor: default;\n    border-radius: 5px;\n    width: 100px;\n    padding-left: 30px; }\n\ni {\n  position: absolute;\n  left: 10px;\n  top: -2px;\n  pointer-events: none;\n  font-size: 20px;\n  color: #b0aac2; }\n", ""]);
+exports.push([module.i, ":host {\n  position: absolute;\n  right: 20px; }\n\n.avatar-input {\n  transition: 0.3s ease-in-out;\n  -webkit-transition: 0.3s ease-in-out;\n  height: 33px;\n  width: 33px;\n  border-radius: 50%;\n  border: none;\n  border: 1px solid #ced0d4;\n  padding: 5px 10px 5px 20px;\n  outline: none;\n  font-size: 14px;\n  cursor: pointer; }\n  .avatar-input:focus {\n    cursor: default;\n    border-radius: 5px;\n    width: 100px;\n    padding-left: 30px; }\n\ni {\n  position: absolute;\n  left: 10px;\n  top: 6px;\n  pointer-events: none;\n  font-size: 20px;\n  color: #31a6ca; }\n", ""]);
 
 // exports
 
@@ -476,7 +476,7 @@ var CommentsComponent = (function () {
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<polls></polls>\n<avatars></avatars>\n<!-- <app-comments></app-comments> -->"
+module.exports = "<avatars></avatars>\n<polls></polls>\n<!-- <app-comments></app-comments> -->"
 
 /***/ }),
 
@@ -563,7 +563,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".polls__card {\n  display: inline-block;\n  min-width: 50px;\n  height: 70px;\n  margin: 0;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);\n  border: 1px solid transparent;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  border-radius: 4px;\n  font-size: 22px;\n  text-align: center;\n  line-height: 70px;\n  cursor: pointer;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  background-color: #e0d9cf;\n  margin: 0 10px; }\n\n.polls__card.voted {\n  opacity: 0.5;\n  cursor: default; }\n\n.polls__card.selected {\n  background-color: gold;\n  opacity: 1; }\n", ""]);
+exports.push([module.i, ".polls__card {\n  display: inline-block;\n  min-width: 50px;\n  height: 70px;\n  margin: 0;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5);\n  border: 1px solid transparent;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  border-radius: 4px;\n  font-size: 22px;\n  text-align: center;\n  line-height: 70px;\n  cursor: pointer;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  background-color: #e0d9cf;\n  margin: 10px; }\n\n.polls__card.voted {\n  opacity: 0.5;\n  cursor: default; }\n\n.polls__card.selected {\n  background-color: gold;\n  opacity: 1; }\n", ""]);
 
 // exports
 
@@ -640,7 +640,7 @@ var CardComponent = (function () {
 /***/ "../../../../../src/app/polls/polls.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"reveal()\">\n\tReveal\n</button>  \n\n<button \n    class=\"btn btn-primary btn-sm\"\n    type=\"button\"\n    (click)=\"reset()\">\n    Reset\n</button>  \n\n<!-- <button \n\tclass=\"btn btn-primary btn-sm\"\n\ttype=\"button\"\n\t(click)=\"newRoom()\">\n\tNew Room\n</button>   -->"
+module.exports = "<div class=\"card-container\">\n    <h3>Choose your estimate...</h3>\n\t<br>\n\t\n    <polls-card\n      *ngFor=\"let cardValue of cardValues\"\n      [value]=\"cardValue\">\n\t</polls-card>\n\t\n</div>\n\n<div class=\"card-container\">\n    <p>{{ estimateMessage }}</p>\n    <br>    \n\n    <polls-voter\n      *ngFor=\"let voter of voters; trackBy: trackByVoter\"\n\t  [voter]=\"voter\"\n\t  [result]=\"result\">\n\t</polls-voter>\n\n</div>\n\n<div class=\"card-container\">\n\t\t\t\n\t<button \n\t\tclass=\"btn btn-primary btn-sm\"\n\t\ttype=\"button\"\n\t\t(click)=\"reveal()\">\n\t\tReveal\n\t</button>  \n\n\t<button \n\t\tclass=\"btn btn-primary btn-sm\"\n\t\ttype=\"button\"\n\t\t(click)=\"reset()\">\n\t\tReset\n\t</button>  \n\n</div>"
 
 /***/ }),
 
@@ -652,7 +652,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-container {\n  padding: 15px; }\n", ""]);
+exports.push([module.i, ".card-container {\n  padding: 20px;\n  color: white;\n  text-shadow: 0px 0px 4px #000000; }\n", ""]);
 
 // exports
 
@@ -757,7 +757,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".polls__voter {\n  display: inline-block;\n  width: 50px;\n  height: 70px;\n  margin-right: 20px; }\n\n.polls__voter .front span {\n  transition: 0.3s;\n  font-size: 24px;\n  line-height: 60px;\n  color: #5d4f46; }\n\n.polls__voter.is_current_user.voted .front,\n.polls__voter.is_current_user.voted .back {\n  background-color: gold;\n  cursor: pointer; }\n\n.polls__voter.is_current_user .front,\n.polls__voter.is_current_user .back {\n  background-color: #fff5c1;\n  cursor: pointer; }\n\n.polls__voter.voted .front,\n.polls__voter.voted .back {\n  background-color: #dbd3c9; }\n\n.polls__voter.voted .back.green {\n  background-color: #7ccd7c; }\n\n.polls__voter .front,\n.polls__voter .back {\n  background-color: #efeeee; }\n  .polls__voter .front .avatar-text,\n  .polls__voter .back .avatar-text {\n    position: absolute;\n    font-size: 10px;\n    bottom: 0;\n    opacity: 0.5;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n    .polls__voter .front .avatar-text div,\n    .polls__voter .back .avatar-text div {\n      padding: 2px;\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n  .polls__voter .front .voted-text,\n  .polls__voter .back .voted-text {\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    font-size: 20px; }\n\n.front, .back {\n  width: 50px;\n  height: 70px;\n  border-radius: 4px;\n  text-align: center;\n  cursor: default;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  border: 1px solid #BBB;\n  overflow: hidden;\n  transition: 0.3s;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }\n\n.flip-container {\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d; }\n\n.flip-container.flip .flipper {\n  -webkit-transform: rotateY(180deg);\n          transform: rotateY(180deg); }\n\n.flipper {\n  transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: relative; }\n\n.front, .back {\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.front {\n  z-index: 2;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg); }\n\n.back {\n  -webkit-transform: rotateY(-180deg);\n          transform: rotateY(-180deg); }\n\n.vertical.flip-container {\n  position: relative; }\n\n.vertical .back {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n\n.vertical.flip-container:hover .back {\n  -webkit-transform: rotateX(0deg);\n          transform: rotateX(0deg); }\n\n.vertical.flip-container:hover .front {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n", ""]);
+exports.push([module.i, ".polls__voter {\n  display: inline-block;\n  width: 50px;\n  height: 70px;\n  margin: 10px; }\n\n.polls__voter .front span {\n  transition: 0.3s;\n  font-size: 24px;\n  line-height: 60px;\n  color: #5d4f46; }\n\n.polls__voter.is_current_user.voted .front,\n.polls__voter.is_current_user.voted .back {\n  background-color: gold;\n  cursor: pointer; }\n\n.polls__voter.is_current_user .front,\n.polls__voter.is_current_user .back {\n  background-color: #fff5c1;\n  cursor: pointer; }\n\n.polls__voter.voted .front,\n.polls__voter.voted .back {\n  background-color: #dbd3c9; }\n\n.polls__voter.voted .back.green {\n  background-color: #7ccd7c; }\n\n.polls__voter .front,\n.polls__voter .back {\n  background-color: #efeeee; }\n  .polls__voter .front .avatar-text,\n  .polls__voter .back .avatar-text {\n    position: absolute;\n    font-size: 10px;\n    bottom: 0;\n    opacity: 0.5;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    width: 100%;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center; }\n    .polls__voter .front .avatar-text div,\n    .polls__voter .back .avatar-text div {\n      padding: 2px;\n      white-space: nowrap;\n      overflow: hidden;\n      text-overflow: ellipsis; }\n  .polls__voter .front .voted-text,\n  .polls__voter .back .voted-text {\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    font-size: 20px; }\n\n.front, .back {\n  width: 50px;\n  height: 70px;\n  border-radius: 4px;\n  text-align: center;\n  cursor: default;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  border: 1px solid #BBB;\n  overflow: hidden;\n  transition: 0.3s;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }\n\n.flip-container {\n  -webkit-perspective: 1000px;\n          perspective: 1000px;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d; }\n\n.flip-container.flip .flipper {\n  -webkit-transform: rotateY(180deg);\n          transform: rotateY(180deg); }\n\n.flipper {\n  transition: 0.6s;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: relative; }\n\n.front, .back {\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  -webkit-transform-style: preserve-3d;\n          transform-style: preserve-3d;\n  position: absolute;\n  top: 0;\n  left: 0; }\n\n.front {\n  z-index: 2;\n  -webkit-transform: rotateY(0deg);\n          transform: rotateY(0deg); }\n\n.back {\n  -webkit-transform: rotateY(-180deg);\n          transform: rotateY(-180deg); }\n\n.vertical.flip-container {\n  position: relative; }\n\n.vertical .back {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n\n.vertical.flip-container:hover .back {\n  -webkit-transform: rotateX(0deg);\n          transform: rotateX(0deg); }\n\n.vertical.flip-container:hover .front {\n  -webkit-transform: rotateX(180deg);\n          transform: rotateX(180deg); }\n", ""]);
 
 // exports
 
@@ -1107,6 +1107,13 @@ var Constant = {
     AppName: 'helios-tuddle',
 };
 
+
+/***/ }),
+
+/***/ "../../../../../src/assets/images/deer-background.jpg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "deer-background.ee7f06e40b29a783c595.jpg";
 
 /***/ }),
 
