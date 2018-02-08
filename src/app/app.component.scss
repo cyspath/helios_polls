@@ -1,7 +1,16 @@
-.content-container {
-	margin: 0 auto;
-	max-width: 980px;
-	border: 1px solid #dddfe3;
-	background-color: #ffffff;
-	padding: 30px 0;
+@import './main';
+
+.main-content-container {
+	display: flex;
+	justify-content: center;
+
+	height: 100%;
+	background-color: $color-blue;
+
+	.main-content {
+		background-color: $color-teal;		
+		max-width: 980px;
+		// border: 1px solid #dddfe3;
+		padding: 30px 0;
+	}
 }

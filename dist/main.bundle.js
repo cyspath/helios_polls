@@ -138,7 +138,7 @@ var AppRoutingModule = (function () {
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ul>\n\t<li><a routerLink=\"\">Home</a></li>\n\t<li><a routerLink=\"about/21\">About</a></li>\n</ul> -->\n\n<div class=\"content-container\">\n\t<router-outlet></router-outlet>\n</div>"
+module.exports = "<!-- <ul>\n\t<li><a routerLink=\"\">Home</a></li>\n\t<li><a routerLink=\"about/21\">About</a></li>\n</ul> -->\n\n<div class=\"main-content-container\">\n\t<div class=\"main-content\">\n\t\t<router-outlet></router-outlet>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -150,7 +150,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".content-container {\n  margin: 0 auto;\n  max-width: 980px;\n  border: 1px solid #dddfe3;\n  background-color: #ffffff;\n  padding: 30px 0; }\n", ""]);
+exports.push([module.i, ".main-content-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  height: 100%;\n  background-color: #c2d4d8; }\n  .main-content-container .main-content {\n    background-color: #dbe9d8;\n    max-width: 980px;\n    padding: 30px 0; }\n", ""]);
 
 // exports
 
@@ -267,7 +267,7 @@ var AppModule = (function () {
 /***/ "../../../../../src/app/avatar/avatar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<input \n\t#avatarInput\n\tclass=\"avatar-input\"\n\t[(ngModel)]=\"text\" \n\t(focusout)=\"focusOut()\"\n\t(keyup.enter)=\"handleClick($event)\">\n\t"
+module.exports = "<input \n\t#avatarInput\n\tclass=\"avatar-input\"\n\t[(ngModel)]=\"text\" \n\t(focusout)=\"focusOut()\"\n\t(keyup.enter)=\"handleClick($event)\">\n\t\n<i class=\"fa fa-user\"></i>\n"
 
 /***/ }),
 
@@ -279,7 +279,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".avatar-input {\n  transition: 0.3s ease-in-out;\n  -webkit-transition: 0.3s ease-in-out;\n  width: 34px;\n  border-radius: 50%;\n  border: none;\n  border: 1px solid #ced0d4;\n  padding: 5px 10px;\n  outline: none;\n  font-size: 14px;\n  cursor: pointer; }\n  .avatar-input:focus {\n    cursor: default;\n    border-radius: 5px;\n    width: 100px; }\n", ""]);
+exports.push([module.i, ":host {\n  position: relative; }\n\n.avatar-input {\n  transition: 0.3s ease-in-out;\n  -webkit-transition: 0.3s ease-in-out;\n  height: 33px;\n  width: 33px;\n  border-radius: 50%;\n  border: none;\n  border: 1px solid #ced0d4;\n  padding: 5px 10px 5px 20px;\n  outline: none;\n  font-size: 14px;\n  cursor: pointer; }\n  .avatar-input:focus {\n    cursor: default;\n    border-radius: 5px;\n    width: 100px;\n    padding-left: 30px; }\n\ni {\n  position: absolute;\n  left: 10px;\n  top: -2px;\n  pointer-events: none;\n  font-size: 20px;\n  color: #b0aac2; }\n", ""]);
 
 // exports
 

@@ -25,6 +25,8 @@ Go production:
 
 https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app
 
+issues fixed:
+	CSS error caused by font awesome silence: https://github.com/angular/angular-cli/issues/7991
 
 you cannot cheat the votes are completely hidden (even in code) til revealed - this is NOT DONE YET
 names for choosing
