@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { StateService } from "../../services/state.service";
-import { ApiService } from "../../services/api.service";
-import { Action } from "../../shared/Actions";
 
 @Component({
 	selector: 'polls-card',
@@ -15,9 +12,9 @@ export class CardComponent implements OnInit {
 	public voted: boolean = false;
 	public selected: boolean = false;
 
-	constructor(private _state: StateService, private _api: ApiService) {}
+	constructor(private _state: StateService) {}
 
-	ngOnInit() {
+	public ngOnInit() {
 		this._state.user.subscribe((u) => {			
 			this.voted = u.voted;
 			if (!u.voted) {
@@ -26,12 +23,10 @@ export class CardComponent implements OnInit {
 		});
 	}
 
-	vote() {
-		if (this.voted) {
-			return;
-		}
+	public vote() {
+		if (this.voted) return;
 		this.selected = true;
-		this._api.send({ action: Action.NewVote, value: this.value });
+		this._state.submitVote(this.value);
 	}
 
 }

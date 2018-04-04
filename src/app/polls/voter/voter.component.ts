@@ -1,7 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 
 import { StateService } from "../../services/state.service";
-import { ApiService } from "../../services/api.service";
 import { Action } from "../../shared/Actions";
 import { IVoter } from "./Voter";
 import { Result } from "../Result.enum";
@@ -20,7 +19,7 @@ export class VoterComponent implements OnInit {
 	public currentUser: any;
 	public Result = Result;
 	
-	constructor(private _state: StateService, private _api: ApiService) {}
+	constructor(private _state: StateService) {}
 	
 	public ngOnInit() {
 		this._state.user.subscribe(currentUser => {		
@@ -31,7 +30,7 @@ export class VoterComponent implements OnInit {
 
 	public cancelVote() {
 		if (this.isCurrentUser && this.currentUser.voted) {
-			this._api.send({ action: Action.CancelVote });
+			this._state.cancelVote();
 		}		
 	}
 }

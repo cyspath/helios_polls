@@ -21,42 +21,25 @@ export class StateService {
 
 	public voters = new BehaviorSubject<any>([]);
 
-	public commentable = new BehaviorSubject<any>(['Welcome to Helios agile board!']);
-
 	constructor(private _api: ApiService) {
 		let userId: any;
 
 		this._api.messages.subscribe(msg => {
-
 			switch(msg.action) {
-
 				case Action.CurrentUser:
 					const user = msg.value;
 					userId = user.id;
 					this.user.next(user);
 					break;
-
 				case Action.UpdateUsers:
 					const users = msg.value; // users hash from server
 					this.user.next(users[userId]);
 					this.voters.next(Object.values(users));			
 					break;
-				
 				default:
 					console.log(`Default action: ${msg}`);
 			}
 		});
-	}
-
-	public updateUser(options) {
-		this.user.take(1).subscribe((u) => {
-			const user = Object.assign({}, u, options);
-			this.user.next(user);
-		})
-	}
-
-	public updateCommentObs(comments) {
-		this.commentable.next(comments);
 	}
 
 	public resetVotes() {
@@ -67,7 +50,15 @@ export class StateService {
 		this._api.send({ action: Action.RevealVotes });		
 	}
 
-	// public newRoom() {		
-	// 	this._api.send({ action: Action.NewRoom });
-	// }
+	public setAvatar(avatar) {
+		this._api.send({ action: Action.UpdateAvatar, value: avatar });		
+	}
+
+	public submitVote(value) {
+		this._api.send({ action: Action.NewVote, value });
+	}
+
+	public cancelVote() {
+		this._api.send({ action: Action.CancelVote });		
+	}
 }

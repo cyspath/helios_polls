@@ -17,79 +17,6 @@ webpackEmptyAsyncContext.id = "../../../../../src/$$_lazy_route_resource lazy re
 
 /***/ }),
 
-/***/ "../../../../../src/app/about/about.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  This is about page.\n</p>\n\n<p>\n  <button\n    type=\"button\"\n    (click)=\"takeMeHome()\">\n    <strong>< HOME</strong>\n</button>\n</p>\n\n\n<ul >\n  <li *ngFor=\"let comment of comments\">{{ comment }}</li>\n</ul>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/about/about.component.scss":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/about/about.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var AboutComponent = (function () {
-    function AboutComponent(route, router, _state) {
-        this.route = route;
-        this.router = router;
-        this._state = _state;
-        this.route.params.subscribe(function (res) { return console.log(res.id); });
-    }
-    AboutComponent.prototype.ngOnInit = function () {
-        // this._state.commentObs.subscribe(res => this.comments = res);
-    };
-    AboutComponent.prototype.takeMeHome = function () {
-        this.router.navigate(['']);
-    };
-    AboutComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-about',
-            template: __webpack_require__("../../../../../src/app/about/about.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/about/about.component.scss")]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2__services_state_service__["a" /* StateService */]])
-    ], AboutComponent);
-    return AboutComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "../../../../../src/app/app-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -98,7 +25,6 @@ var AboutComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -108,24 +34,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
+// import { AboutComponent } from "./about/about.component";
+// import { CommentsComponent } from "./comments/comments.component";
 var routes = [
     {
         path: '',
         component: __WEBPACK_IMPORTED_MODULE_2__home_home_component__["a" /* HomeComponent */]
     },
-    {
-        path: 'about/:id',
-        component: __WEBPACK_IMPORTED_MODULE_3__about_about_component__["a" /* AboutComponent */]
-    }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
     }
     AppRoutingModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
-            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(routes)],
-            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]]
+            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forRoot(routes)],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]]
         })
     ], AppRoutingModule);
     return AppRoutingModule;
@@ -205,13 +128,11 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__avatar_avatar_component__ = __webpack_require__("../../../../../src/app/avatar/avatar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__comments_comments_component__ = __webpack_require__("../../../../../src/app/comments/comments.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__polls_polls_component__ = __webpack_require__("../../../../../src/app/polls/polls.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__polls_card_card_component__ = __webpack_require__("../../../../../src/app/polls/card/card.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__polls_voter_voter_component__ = __webpack_require__("../../../../../src/app/polls/voter/voter.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services__ = __webpack_require__("../../../../../src/app/services/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__avatar_avatar_component__ = __webpack_require__("../../../../../src/app/avatar/avatar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__polls_polls_component__ = __webpack_require__("../../../../../src/app/polls/polls.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__polls_card_card_component__ = __webpack_require__("../../../../../src/app/polls/card/card.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__polls_voter_voter_component__ = __webpack_require__("../../../../../src/app/polls/voter/voter.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services__ = __webpack_require__("../../../../../src/app/services/index.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -225,9 +146,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+// import { AboutComponent } from './about/about.component';
 
-
-
+// import { CommentsComponent } from './comments/comments.component';
 
 
 
@@ -240,12 +161,12 @@ var AppModule = (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__about_about_component__["a" /* AboutComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__avatar_avatar_component__["a" /* AvatarComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__comments_comments_component__["a" /* CommentsComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__polls_polls_component__["a" /* PollsComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__polls_card_card_component__["a" /* CardComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__polls_voter_voter_component__["a" /* VoterComponent */]
+                // AboutComponent,
+                __WEBPACK_IMPORTED_MODULE_7__avatar_avatar_component__["a" /* AvatarComponent */],
+                // CommentsComponent,
+                __WEBPACK_IMPORTED_MODULE_8__polls_polls_component__["a" /* PollsComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__polls_card_card_component__["a" /* CardComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__polls_voter_voter_component__["a" /* VoterComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -253,7 +174,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */]
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_13__services__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_13__services__["c" /* StateService */], __WEBPACK_IMPORTED_MODULE_13__services__["b" /* LocalStoreService */], __WEBPACK_IMPORTED_MODULE_13__services__["d" /* WebsocketService */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_11__services__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_11__services__["c" /* StateService */], __WEBPACK_IMPORTED_MODULE_11__services__["b" /* LocalStoreService */], __WEBPACK_IMPORTED_MODULE_11__services__["d" /* WebsocketService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -296,7 +217,6 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AvatarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services__ = __webpack_require__("../../../../../src/app/services/index.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -308,11 +228,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
 var AvatarComponent = (function () {
-    function AvatarComponent(_state, _api, _localStore) {
+    function AvatarComponent(_state, _localStore) {
         this._state = _state;
-        this._api = _api;
         this._localStore = _localStore;
         this.text = '';
     }
@@ -336,7 +254,7 @@ var AvatarComponent = (function () {
     };
     AvatarComponent.prototype.setAvatar = function (avatar) {
         this._localStore.setAvatar(avatar);
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_2__shared_Actions__["a" /* Action */].UpdateAvatar, value: avatar });
+        this._state.setAvatar(avatar);
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('avatarInput'),
@@ -348,125 +266,9 @@ var AvatarComponent = (function () {
             template: __webpack_require__("../../../../../src/app/avatar/avatar.component.html"),
             styles: [__webpack_require__("../../../../../src/app/avatar/avatar.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services__["c" /* StateService */], __WEBPACK_IMPORTED_MODULE_1__services__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_1__services__["b" /* LocalStoreService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services__["c" /* StateService */], __WEBPACK_IMPORTED_MODULE_1__services__["b" /* LocalStoreService */]])
     ], AvatarComponent);
     return AvatarComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../src/app/comments/comments.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container color-dark\">\n\t<div class=\"col\">\n\t\t<p>Add a comment here</p>\n\t</div>\n\n\t<div class=\"col\">\n\t\t<p>Comments ({{ comments.length }})</p>\n\t</div>\n</div>\n\n<div class=\"container color-light\" [@comments]=\"comments.length\">\n\t<div class=\"col\">\n\t\t<p class=\"sm\">Use this input to add new comment</p>\n\t\t<form>\n\t\t\t<input \n\t\t\t\ttype=\"text\" \n\t\t\t\tplaceholder=\"Enter snarky remark here\" \n\t\t\t\tname=\"item\" \n\t\t\t\tclass=\"txt\" \n\t\t\t\t[(ngModel)]=\"commentText\">\n\t\t\t<input\n\t\t\t\ttype=\"submit\" \n\t\t\t\tclass=\"btn\" \n\t\t\t\t[value]=\"btnText\"\n\t\t\t\t(click)=\"addItem()\">\n\t\t</form>\n\t</div>\n\n\t<div class=\"col\">\n\t\t<p \n\t\t\tclass=\"life-container\" \n\t\t\t*ngFor=\"let comment of comments; let i = index\"\n\t\t\t(click)=\"removeItem(i)\">\n\t\t\t{{ comment }}\n\t\t</p>\n\t</div>\n</div>\n\n<!-- <button type=\"button\" (click)=\"sendMessage()\">SEND</button> -->"
-
-/***/ }),
-
-/***/ "../../../../../src/app/comments/comments.component.scss":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".container {\n  display: -ms-grid;\n  display: grid;\n  -ms-grid-columns: 50% auto;\n      grid-template-columns: 50% auto;\n  color: #fff; }\n\n.col {\n  padding: .4em 1.3em; }\n\n.color-dark {\n  background: #2885C4; }\n\n.color-light {\n  background: #57B3F1; }\n\ninput.txt {\n  border: 0;\n  padding: 1em;\n  width: 80%;\n  margin-bottom: 2em; }\n\ninput.btn {\n  border: 0;\n  display: block;\n  padding: 1em 3em;\n  background: #A5F883;\n  color: #003A61;\n  margin-bottom: 1em;\n  cursor: pointer; }\n\n.life-container {\n  background: #3FA0E1;\n  padding: .5em;\n  font-weight: bold;\n  cursor: pointer; }\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/comments/comments.component.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommentsComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_animations__ = __webpack_require__("../../../animations/esm5/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var CommentsComponent = (function () {
-    function CommentsComponent(_state, _api) {
-        this._state = _state;
-        this._api = _api;
-        this.btnText = 'Add Comment';
-        this.commentText = '';
-        this.comments = [];
-    }
-    CommentsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._state.commentable.subscribe(function (res) { return _this.comments = res; });
-        this.emitChange();
-        // this._api.messages.subscribe(msg => {
-        //   this.comments.push(msg.value);
-        //   this.commentText = '';
-        //   this.emitChange();
-        // })
-    };
-    CommentsComponent.prototype.addItem = function () {
-        // this.comments.push(this.commentText);
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].NewComment, value: this.commentText });
-        // this.commentText = '';
-        // this.emitChange();
-    };
-    CommentsComponent.prototype.removeItem = function (i) {
-        this.comments.splice(i, 1);
-        this.emitChange();
-    };
-    CommentsComponent.prototype.emitChange = function () {
-        this._state.updateCommentObs(this.comments);
-    };
-    CommentsComponent = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-            selector: 'app-comments',
-            template: __webpack_require__("../../../../../src/app/comments/comments.component.html"),
-            styles: [__webpack_require__("../../../../../src/app/comments/comments.component.scss")],
-            animations: [
-                Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["l" /* trigger */])('comments', [
-                    Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["k" /* transition */])('* => *', [
-                        Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* query */])(':enter', Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["j" /* style */])({ opacity: 0 }), { optional: true }),
-                        Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* query */])(':enter', Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["i" /* stagger */])('300ms', [
-                            Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('.6s ease-in', Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["f" /* keyframes */])([
-                                Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["j" /* style */])({ opacity: 0, transform: 'translateY(-75%)', offset: 0 }),
-                                Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["j" /* style */])({ opacity: 0.5, transform: 'translateY(35%)', offset: 0.3 }),
-                                Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["j" /* style */])({ opacity: 1, transform: 'translateY(0)', offset: 1 })
-                            ]))
-                        ]), { optional: true }),
-                        Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["g" /* query */])(':leave', Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["i" /* stagger */])('300ms', [
-                            Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["e" /* animate */])('.6s ease-in', Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["f" /* keyframes */])([
-                                Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["j" /* style */])({ opacity: 1, transform: 'translateY(0)', offset: 0 }),
-                                Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["j" /* style */])({ opacity: 0.5, transform: 'translateY(35%)', offset: 0.3 }),
-                                Object(__WEBPACK_IMPORTED_MODULE_1__angular_animations__["j" /* style */])({ opacity: 0, transform: 'translateY(-75%)', offset: 1 })
-                            ]))
-                        ]), { optional: true })
-                    ])
-                ])
-            ]
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_state_service__["a" /* StateService */], __WEBPACK_IMPORTED_MODULE_3__services_api_service__["a" /* ApiService */]])
-    ], CommentsComponent);
-    return CommentsComponent;
 }());
 
 
@@ -476,7 +278,7 @@ var CommentsComponent = (function () {
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<avatars></avatars>\n<polls></polls>\n<!-- <app-comments></app-comments> -->"
+module.exports = "<avatars></avatars>\n<polls></polls>\n"
 
 /***/ }),
 
@@ -563,7 +365,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".polls__card {\n  display: inline-block;\n  min-width: 50px;\n  height: 70px;\n  margin: 0;\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5);\n  border: 1px solid transparent;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  border-radius: 4px;\n  font-size: 22px;\n  text-align: center;\n  line-height: 70px;\n  cursor: pointer;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  background-color: #e0d9cf;\n  margin: 10px; }\n\n.polls__card.voted {\n  opacity: 0.5;\n  cursor: default; }\n\n.polls__card.selected {\n  background-color: gold;\n  opacity: 1; }\n", ""]);
+exports.push([module.i, ".polls__card {\n  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5);\n  display: inline-block;\n  min-width: 50px;\n  height: 70px;\n  margin: 0;\n  border: 1px solid transparent;\n  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);\n  border-radius: 4px;\n  font-size: 22px;\n  text-align: center;\n  line-height: 70px;\n  cursor: pointer;\n  color: #3e352f;\n  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);\n  background-color: #e0d9cf;\n  margin: 10px; }\n\n.polls__card.voted {\n  opacity: 0.5;\n  cursor: default; }\n\n.polls__card.selected {\n  background-color: gold;\n  opacity: 1; }\n", ""]);
 
 // exports
 
@@ -580,8 +382,6 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -593,12 +393,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-
-
 var CardComponent = (function () {
-    function CardComponent(_state, _api) {
+    function CardComponent(_state) {
         this._state = _state;
-        this._api = _api;
         this.voted = false;
         this.selected = false;
     }
@@ -612,11 +409,10 @@ var CardComponent = (function () {
         });
     };
     CardComponent.prototype.vote = function () {
-        if (this.voted) {
+        if (this.voted)
             return;
-        }
         this.selected = true;
-        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_3__shared_Actions__["a" /* Action */].NewVote, value: this.value });
+        this._state.submitVote(this.value);
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])(),
@@ -628,7 +424,7 @@ var CardComponent = (function () {
             template: __webpack_require__("../../../../../src/app/polls/card/card.component.html"),
             styles: [__webpack_require__("../../../../../src/app/polls/card/card.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_state_service__["a" /* StateService */], __WEBPACK_IMPORTED_MODULE_2__services_api_service__["a" /* ApiService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_state_service__["a" /* StateService */]])
     ], CardComponent);
     return CardComponent;
 }());
@@ -669,8 +465,7 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PollsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Result_enum__ = __webpack_require__("../../../../../src/app/polls/Result.enum.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Result_enum__ = __webpack_require__("../../../../../src/app/polls/Result.enum.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -683,12 +478,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var CARD_VALUES = ['1', '2', '3', '5', '8', '13', '21', '?'];
 var PollsComponent = (function () {
-    function PollsComponent(_state, _api) {
+    function PollsComponent(_state) {
         this._state = _state;
-        this._api = _api;
         this.voters = [];
         this.cardValues = CARD_VALUES;
     }
@@ -706,14 +499,11 @@ var PollsComponent = (function () {
     PollsComponent.prototype.reset = function () {
         this._state.resetVotes();
     };
-    // public newRoom() {
-    // 	this._state.newRoom();
-    // }
     PollsComponent.prototype.reveal = function () {
         this._state.revealVotes();
     };
     PollsComponent.prototype.updateResult = function (voters) {
-        this.result = this.sameResult(voters) ? __WEBPACK_IMPORTED_MODULE_3__Result_enum__["a" /* Result */].Same : __WEBPACK_IMPORTED_MODULE_3__Result_enum__["a" /* Result */].Different;
+        this.result = this.sameResult(voters) ? __WEBPACK_IMPORTED_MODULE_2__Result_enum__["a" /* Result */].Same : __WEBPACK_IMPORTED_MODULE_2__Result_enum__["a" /* Result */].Different;
     };
     PollsComponent.prototype.sameResult = function (voters) {
         var vote;
@@ -733,7 +523,7 @@ var PollsComponent = (function () {
             template: __webpack_require__("../../../../../src/app/polls/polls.component.html"),
             styles: [__webpack_require__("../../../../../src/app/polls/polls.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_state_service__["a" /* StateService */], __WEBPACK_IMPORTED_MODULE_2__services_api_service__["a" /* ApiService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_state_service__["a" /* StateService */]])
     ], PollsComponent);
     return PollsComponent;
 }());
@@ -774,9 +564,7 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VoterComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_state_service__ = __webpack_require__("../../../../../src/app/services/state.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_api_service__ = __webpack_require__("../../../../../src/app/services/api.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_Actions__ = __webpack_require__("../../../../../src/app/shared/Actions.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Result_enum__ = __webpack_require__("../../../../../src/app/polls/Result.enum.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Result_enum__ = __webpack_require__("../../../../../src/app/polls/Result.enum.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -789,13 +577,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var VoterComponent = (function () {
-    function VoterComponent(_state, _api) {
+    function VoterComponent(_state) {
         this._state = _state;
-        this._api = _api;
-        this.Result = __WEBPACK_IMPORTED_MODULE_4__Result_enum__["a" /* Result */];
+        this.Result = __WEBPACK_IMPORTED_MODULE_2__Result_enum__["a" /* Result */];
     }
     VoterComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -806,7 +591,7 @@ var VoterComponent = (function () {
     };
     VoterComponent.prototype.cancelVote = function () {
         if (this.isCurrentUser && this.currentUser.voted) {
-            this._api.send({ action: __WEBPACK_IMPORTED_MODULE_3__shared_Actions__["a" /* Action */].CancelVote });
+            this._state.cancelVote();
         }
     };
     __decorate([
@@ -823,7 +608,7 @@ var VoterComponent = (function () {
             template: __webpack_require__("../../../../../src/app/polls/voter/voter.component.html"),
             styles: [__webpack_require__("../../../../../src/app/polls/voter/voter.component.scss")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_state_service__["a" /* StateService */], __WEBPACK_IMPORTED_MODULE_2__services_api_service__["a" /* ApiService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_state_service__["a" /* StateService */]])
     ], VoterComponent);
     return VoterComponent;
 }());
@@ -839,7 +624,6 @@ var VoterComponent = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__websocket_service__ = __webpack_require__("../../../../../src/app/services/websocket.service.ts");
-// reference: https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -849,6 +633,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+// reference: https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
 
 
 var ApiService = (function () {
@@ -965,7 +750,6 @@ var StateService = (function () {
             reveal: false
         });
         this.voters = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]([]);
-        this.commentable = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](['Welcome to Helios agile board!']);
         var userId;
         this._api.messages.subscribe(function (msg) {
             switch (msg.action) {
@@ -984,21 +768,20 @@ var StateService = (function () {
             }
         });
     }
-    StateService.prototype.updateUser = function (options) {
-        var _this = this;
-        this.user.take(1).subscribe(function (u) {
-            var user = Object.assign({}, u, options);
-            _this.user.next(user);
-        });
-    };
-    StateService.prototype.updateCommentObs = function (comments) {
-        this.commentable.next(comments);
-    };
     StateService.prototype.resetVotes = function () {
         this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].ResetVotes });
     };
     StateService.prototype.revealVotes = function () {
         this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].RevealVotes });
+    };
+    StateService.prototype.setAvatar = function (avatar) {
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].UpdateAvatar, value: avatar });
+    };
+    StateService.prototype.submitVote = function (value) {
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].NewVote, value: value });
+    };
+    StateService.prototype.cancelVote = function () {
+        this._api.send({ action: __WEBPACK_IMPORTED_MODULE_4__shared_Actions__["a" /* Action */].CancelVote });
     };
     StateService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -1019,33 +802,25 @@ var StateService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client__ = __webpack_require__("../../../../socket.io-client/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_socket_io_client__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
-// reference: https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
+// reference: https://tutorialedge.net/typescript/angular/angular-socket-io-tutorial/
 
 
 
-
-// import { environment } from '../environments/environment';
 var WebsocketService = (function () {
     function WebsocketService() {
     }
     WebsocketService.prototype.connect = function () {
         var _this = this;
         this.socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client__(window.location.origin);
-        // this.socket = io(`http://localhost:3000`);
-        // We define our observable which will observe any incoming messages
-        // from our socket.io server.
-        var observable = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */](function (observer) {
+        // We define our observable which will observe any incoming messages from our socket.io server.
+        var observable = new __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["a" /* Observable */](function (observer) {
             _this.socket.on('message', function (data) {
                 console.log('Websocket Server: ', data);
                 observer.next(data);
@@ -1054,9 +829,8 @@ var WebsocketService = (function () {
                 _this.socket.disconnect();
             };
         });
-        // We define our Observer which will listen to messages
-        // from our other components and send messages back to our
-        // socket server whenever the `next()` method is called.
+        // We define our Observer which will listen to messages from our other components and 
+        // send messages back to our socket server whenever the `next()` method is called.
         var observer = {
             next: function (data) {
                 _this.socket.emit('message', JSON.stringify(data));
@@ -1064,11 +838,10 @@ var WebsocketService = (function () {
         };
         // we return our Rx.Subject which is a combination
         // of both an observer and observable.
-        return __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__["a" /* Subject */].create(observer, observable);
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["b" /* Subject */].create(observer, observable);
     };
     WebsocketService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])()
     ], WebsocketService);
     return WebsocketService;
 }());
