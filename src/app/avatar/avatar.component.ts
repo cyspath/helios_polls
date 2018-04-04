@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import { ApiService, LocalStoreService, StateService } from "../services";
+import { LocalStoreService, StateService } from "../services";
 import { Action } from "../shared/Actions";
 
 @Component({
@@ -13,7 +13,7 @@ export class AvatarComponent implements OnInit {
 	
 	public text: string = '';
 
-	constructor(private _state: StateService, private _api: ApiService, private _localStore: LocalStoreService) {}
+	constructor(private _state: StateService, private _localStore: LocalStoreService) {}
 
 	ngOnInit() {
 		const avatar = this._localStore.getAvatar();
@@ -38,6 +38,6 @@ export class AvatarComponent implements OnInit {
 
 	private setAvatar(avatar) {
 		this._localStore.setAvatar(avatar);
-		this._api.send({ action: Action.UpdateAvatar, value: avatar });
+		this._state.setAvatar(avatar);
 	}
 }

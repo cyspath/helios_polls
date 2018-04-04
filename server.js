@@ -4,16 +4,16 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 5000
 const http = require('http').Server(app);
-
-require('heroku-self-ping')("https://helios-tuddle.herokuapp.com/");
-
 let io = require('socket.io')(http);
 
-// Parsers
+// self ping keeps heroku dynos from falling asleep
+require('heroku-self-ping')("https://helios-tuddle.herokuapp.com/");
+
+
+// boilerplate
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-// Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('*', (req, res) => {
@@ -27,7 +27,6 @@ http.listen(PORT, () => {
 
 // Socket io and database-less data management
 let users = {};
-let comments = [];
 
 const emitUsers = () => {
 	return io.emit('message', { action: 'UPDATE_USERS', value: users });	
@@ -39,9 +38,7 @@ const emitCurrentUser = (socket) => {
 
 const allVoted = (users) => {
 	for (let key in users) {
-		if (users[key].vote === undefined || users[key].voted === false) {
-			return false;
-		}
+		if (users[key].vote === undefined || users[key].voted === false) return false;
 	}
 	return true;
 }
@@ -55,7 +52,6 @@ const setAll = (options) => {
 }
 
 io.on('connection', (socket) => {
-	
 	if (!users[socket.id]) {
 		users[socket.id] = { id: socket.id, avatar: '', vote: undefined, voted: false, reveal: false };
 	}
@@ -74,29 +70,19 @@ io.on('connection', (socket) => {
 		let data = JSON.parse(json);
 		data.id = socket.id;
 
-		console.log('Server: received message', data);
+		console.log('Server: received message', users);
 	
 		switch(data.action) {
 			case 'CANCEL_VOTE':				
 				users[data.id].vote = undefined;
 				users[data.id].voted = false;				
-				emitUsers();
-				break;
+				return emitUsers();
 
-			case 'NEW_COMMENT':				
-				comments.push({ id: data.id, value: data.value });
-				io.emit('message', data);
-				break;
-			
 			case 'NEW_VOTE':	
-				console.log('new vote')			
 				users[data.id].vote = data.value;
 				users[data.id].voted = true;
-				if (allVoted(users)) {
-					setAll({ reveal: true });
-				}
-				emitUsers();
-				break;
+				if (allVoted(users)) setAll({ reveal: true });
+				return emitUsers();
 
 			case 'RESET_VOTES':
 				for (var id in users) {
@@ -104,25 +90,18 @@ io.on('connection', (socket) => {
 					users[id].vote = undefined;
 					users[id].reveal = false;					
 				}	
-				emitUsers();
-				break;
-				
+				return emitUsers();
+
 			case 'REVEAL_VOTES':
-				for (var id in users) {
-					users[id].reveal = true;					
-				}	
-				emitUsers();
-				break;
-			
+				for (var id in users) { users[id].reveal = true; }	
+				return emitUsers();
+
 			case 'UPDATE_AVATAR':				
 				users[data.id].avatar = data.value;				
-				emitUsers();
-				break;
+				return emitUsers();
 
 			default:
-				console.log('def');
-				
-				comments.push({ id: socket.id, value: data.value });			
+				console.log('BAD MESSAGE');		
 		}
 	});
 	
